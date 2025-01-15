@@ -29,7 +29,7 @@
             android:backgroundTint="@color/softBlue"
             android:padding="15dp"
             android:scaleType="fitCenter"
-            android:tint="@color/transparent_white"
+            app:tint="@color/transparent_white"
             app:srcCompat="@drawable/user" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Bienvenido, Mecanico Jefe"
+            android:text="@string/greetings"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="0"
-            android:text="Acciones Disponibles"
+            android:text="@string/available_actions"
             android:textSize="24sp" />
 
         <ScrollView
@@ -95,7 +95,7 @@
                         android:id="@+id/completeTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Completar Tareas"
+                        android:text="@string/finish_task"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -125,7 +125,7 @@
                         android:id="@+id/newTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Definir Tareas"
+                        android:text="@string/new_task"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -155,7 +155,7 @@
                         android:id="@+id/checkRepairsTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Consultar Reparaciones"
+                        android:text="@string/repair_list"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -185,7 +185,7 @@
                         android:id="@+id/asignMechanicsToTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Asignar mecanicos a tareas"
+                        android:text="@string/assign_mechanic_task"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatButton

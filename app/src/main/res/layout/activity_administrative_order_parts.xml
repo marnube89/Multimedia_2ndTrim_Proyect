@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Listado de piezas"
+        android:text="@string/parts_list"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_corner_container"
-                android:hint="Proveedor"
+                android:hint="@string/retailer"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -92,7 +92,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_corner_container"
-                android:hint="Pieza a pedir"
+                android:hint="@string/parts_to_buy"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="45dp"
-                android:text="Precio Ud.: 00,00€" />
+                android:text="@string/unit_price" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/unitNumber"
@@ -146,7 +146,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Unidades"
+                android:hint="@string/units"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -176,7 +176,7 @@
                     android:layout_margin="5dp"
                     android:paddingHorizontal="30dp"
                     android:paddingTop="10dp"
-                    android:text="Subtotal:"
+                    android:text="@string/subtotal"
                     android:textColor="@color/blue"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -208,7 +208,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Realizar Pedido"
+                android:text="@string/order_new_parts"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -224,7 +224,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
         </LinearLayout>

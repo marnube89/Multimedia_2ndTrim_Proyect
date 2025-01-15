@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.aux_classes.CarInShop;
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.aux_classes.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,9 @@ public class Administrative_asignCarsToChiefMechanic extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
 
         AutoCompleteTextView chiefMechanic = findViewById(R.id.chiefMechanicTextField);
         ArrayList<String> chiefMechanics = new ArrayList<String>();

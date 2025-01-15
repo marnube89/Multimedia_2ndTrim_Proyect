@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.aux_classes.RepairJob;
 import com.example.gestiontaller.aux_classes.RepairListAdapter;
 import com.example.gestiontaller.aux_classes.User;
@@ -45,6 +46,10 @@ public class ChiefMechanic_CheckAsignedRepairs extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
+
         database = FirebaseDatabase.getInstance().getReference();
 
         currentUid = getIntent().getParcelableExtra("user");

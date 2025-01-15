@@ -16,7 +16,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Asignar Mecanicos a reparaciones"
+        android:text="@string/assign_mechanic_repair"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -43,7 +43,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="0"
                 android:background="@drawable/half_round_container"
-                android:hint="Numero de Reparacion"
+                android:hint="@string/repair_number"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -91,7 +91,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_weight="0"
                 android:background="@drawable/inverted_half_round_container"
-                android:hint="Mecanico a cargo"
+                android:hint="@string/mechanic_in_charge"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -145,7 +145,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Asginar Mecanico"
+                android:text="@string/assign_mechanic"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -162,7 +162,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 

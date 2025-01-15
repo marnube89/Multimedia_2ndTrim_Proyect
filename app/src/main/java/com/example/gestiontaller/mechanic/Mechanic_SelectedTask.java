@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 
 public class Mechanic_SelectedTask extends AppCompatActivity {
 
@@ -22,5 +23,8 @@ public class Mechanic_SelectedTask extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
     }
 }

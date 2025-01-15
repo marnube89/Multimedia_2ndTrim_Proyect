@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.aux_classes.AdminUsersAdapter;
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.aux_classes.User;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.FirebaseApp;
@@ -48,6 +49,9 @@ public class AdminMainPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
 
         employees = findViewById(R.id.employeeList);
         AdminUsersAdapter adapter = new AdminUsersAdapter(AdminMainPage.this, users);

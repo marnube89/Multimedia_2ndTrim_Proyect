@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Asignar mecanicos a tareas"
+        android:text="@string/assign_mechanic_task"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="15dp"
-                    android:text="Lista de mecanicos"
+                    android:text="@string/mechanic_list"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_corner_container"
-                android:hint="Tarea"
+                android:hint="@string/task"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -122,7 +122,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Asignar mecanicos"
+                android:text="@string/assign_mechanic"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -138,7 +138,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
         </LinearLayout>

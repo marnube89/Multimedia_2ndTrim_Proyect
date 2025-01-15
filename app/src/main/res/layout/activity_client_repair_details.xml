@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Detalles de la reparacion"
+        android:text="@string/repair_details"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -43,7 +43,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Nombre de la reparacion"
+                android:hint="@string/date"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -63,7 +63,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Matricula del coche"
+                android:hint="@string/license_plate"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,7 +79,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
+                android:layout_marginVertical="30dp"
+                android:layout_marginHorizontal="30dp"
                 android:background="@drawable/rounded_corner_container"
                 android:orientation="vertical">
 
@@ -88,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:text="Descirpcion de la reparacion"
+                    android:text="@string/repair_desc"
                     android:textAlignment="center"
                     android:textSize="20sp" />
 
@@ -114,19 +115,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/softGreen"
-                android:text="Responder Propuesta"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

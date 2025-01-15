@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Listado de piezas"
+        android:text="@string/parts_list"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -57,7 +57,7 @@
                     android:backgroundTint="@color/softGreen"
                     android:paddingVertical="10dp"
                     android:paddingLeft="20dp"
-                    android:text="Piezas Disponibles"
+                    android:text="@string/parts_available"
                     android:textColor="@color/green"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -89,7 +89,7 @@
                     android:backgroundTint="@color/softRed"
                     android:paddingVertical="10dp"
                     android:paddingLeft="20dp"
-                    android:text="Piezas sin stock"
+                    android:text="@string/parts_out_of_stock"
                     android:textColor="@color/red"
                     android:textSize="20sp"
                     android:textStyle="bold" />

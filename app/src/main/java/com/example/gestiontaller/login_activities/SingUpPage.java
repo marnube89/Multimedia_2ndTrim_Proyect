@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.client.ClientMainPage;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.aux_classes.User;
@@ -47,27 +48,8 @@ public class SingUpPage extends AppCompatActivity {
             return insets;
         });
 
-        LinearLayout fondo = findViewById(R.id.main);
-        AnimationDrawable gradient_anim = (AnimationDrawable) fondo.getBackground();
-        gradient_anim.setEnterFadeDuration(2500);
-        gradient_anim.setExitFadeDuration(5000);
-        gradient_anim.start();
-        //================================================
-        //En caso de querer ocultar todos los controles visibles por el usuario en el telefono debemos introducir los dos
-        //siguientes snnipets de codigo
-
-
-        //Esta linea de codigo le indica al telefono que debe ocultar la barra de notificaciones, se realiza mediante el uso de
-        //window flags
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //Mediante el controlador de nuestra ventana y la decoracion que tiene dentro, podemos ocultar tambien los controles del usuario
-        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(
-                getWindow(), getWindow().getDecorView()
-        );
-        controller.hide(WindowInsetsCompat.Type.systemBars());
-
-        //================================================
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
 
         //GoTo pagina de inicio de sesion desde pagina de registro
         Button goTo_singIn = findViewById(R.id.goTo_signUp);

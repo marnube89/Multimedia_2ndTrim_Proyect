@@ -16,7 +16,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Asignar Mecanicos a coches"
+        android:text="@string/assign_cars_chief"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/half_round_container"
-                android:hint="Matricula"
+                android:hint="@string/license_plate"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -89,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:background="@drawable/inverted_half_round_container"
-                android:hint="Jefe Mecanico"
+                android:hint="@string/chief_mechanic"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -141,7 +141,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Asginar Coche"
+                android:text="@string/assign_car"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -157,7 +157,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 

@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.aux_classes.RepairJob;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,6 +33,10 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
+
         RepairJob data = (RepairJob) getIntent().getSerializableExtra("repair");
 
         TextView repairTittle = findViewById(R.id.repairNumberTittle);

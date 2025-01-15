@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Reparacion"
+        android:text="@string/repair"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Reparacion Nº: 000"
+                android:text="@string/repair_number"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
-                android:text="Matricula: "
+                android:text="@string/license_plate"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
-                android:text="Fecha de entrada: "
+                android:text="@string/date"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
-                android:text="Descripcion de la reparacion:"
+                android:text="@string/repair_desc"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
-                android:text="Diagnostico:"
+                android:text="@string/diagnostic"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -154,7 +154,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Añadir/Actualizar diagnostico"
+                android:text="@string/add_update_diagnostic"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -168,7 +168,7 @@
                 android:background="@color/softBlue"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Completar Reparacion"
+                android:text="@string/finish_repair"
                 android:textColor="@color/blue"
                 android:textSize="20sp" />
 
@@ -184,7 +184,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 

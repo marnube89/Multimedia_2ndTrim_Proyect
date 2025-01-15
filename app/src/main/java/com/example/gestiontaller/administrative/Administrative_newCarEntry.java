@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.aux_classes.CarInShop;
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.example.gestiontaller.aux_classes.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +42,9 @@ public class Administrative_newCarEntry extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
 
         AutoCompleteTextView clientTextField = findViewById(R.id.clientTextField);
         ArrayList<String> clients = new ArrayList<String>();

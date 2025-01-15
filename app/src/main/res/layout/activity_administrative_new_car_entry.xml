@@ -16,7 +16,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Nueva entrada de coche"
+        android:text="@string/new_entry"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:hint="Matricula"
+                android:hint="@string/license_plate"
                 android:orientation="horizontal"
                 app:startIconScaleType="centerCrop">
 
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:hint="Fecha"
+                android:hint="@string/date"
                 android:orientation="horizontal"
                 app:startIconScaleType="centerCrop">
 
@@ -83,7 +83,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/half_round_container"
-                android:hint="Cliente"
+                android:hint="@string/client"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -135,7 +135,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Registrar Entrada"
+                android:text="@string/new_entry"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -151,7 +151,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 

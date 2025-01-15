@@ -42,7 +42,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Nombre Completo"
+                android:hint="@string/real_name"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -62,7 +62,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Mail"
+                android:hint="@string/mail"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -82,7 +82,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/transparent_white"
-                android:hint="Telefono"
+                android:hint="@string/phone_number"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +101,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
-                android:hint="Contraseña"
+                android:hint="@string/password"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -138,15 +138,16 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="30dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif"
-                android:text="Modificar"
+                android:text="@string/save_changes"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/green"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

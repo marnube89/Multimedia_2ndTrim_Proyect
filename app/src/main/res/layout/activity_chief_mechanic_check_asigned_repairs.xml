@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Reparaciones asignadas"
+        android:text="@string/repair_list"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />

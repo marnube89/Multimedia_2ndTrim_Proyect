@@ -29,7 +29,7 @@
             android:backgroundTint="@color/softBlue"
             android:padding="15dp"
             android:scaleType="fitCenter"
-            android:tint="@color/transparent_white"
+            app:tint="@color/transparent_white"
             app:srcCompat="@drawable/user" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Bienvenido, Cliente"
+            android:text="@string/greetings"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="0"
-            android:text="Reparaciones"
+            android:text="@string/repair_list"
             android:textAlignment="center"
             android:textSize="24sp" />
 

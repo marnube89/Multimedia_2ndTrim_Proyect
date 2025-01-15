@@ -29,7 +29,7 @@
             android:backgroundTint="@color/softBlue"
             android:padding="15dp"
             android:scaleType="fitCenter"
-            android:tint="@color/transparent_white"
+            app:tint="@color/transparent_white"
             app:srcCompat="@drawable/user" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Bienvenido, Administrativo"
+            android:text="@string/greetings"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="0"
-            android:text="Acciones Disponibles"
+            android:text="@string/available_actions"
             android:textSize="24sp" />
 
         <ScrollView
@@ -108,7 +108,7 @@
                                 android:id="@+id/asignMechanicsTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Asignar mecanicos"
+                                android:text="@string/assign_mechanic"
                                 android:textSize="20sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -138,7 +138,7 @@
                                 android:id="@+id/newEntryTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Registrar Entrada"
+                                android:text="@string/new_entry"
                                 android:textSize="20sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -168,7 +168,7 @@
                                 android:id="@+id/notifyClientTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Notificar al cliente"
+                                android:text="@string/notify_client"
                                 android:textSize="20sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -206,7 +206,7 @@
                                 android:id="@+id/assignCarTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Asignar coche"
+                                android:text="@string/assign_car"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -214,7 +214,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Jefe mecanico" />
+                                android:text="@string/chief_mechanic" />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/asignCarsBt"
@@ -243,7 +243,7 @@
                                 android:id="@+id/newRepairTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Dar de alta reparaciones"
+                                android:text="@string/new_repair_job"
                                 android:textSize="20sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -273,7 +273,7 @@
                                 android:id="@+id/checkStockTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Consultar stock de piezas"
+                                android:text="@string/check_stock"
                                 android:textSize="20sp" />
 
                             <androidx.appcompat.widget.AppCompatButton
@@ -307,15 +307,8 @@
                         android:id="@+id/newOrderTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Realizar pedido"
+                        android:text="@string/order_new_parts"
                         android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="A proveedor" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/newPiecesOrderBt"

@@ -29,7 +29,7 @@
             android:backgroundTint="@color/softBlue"
             android:padding="15dp"
             android:scaleType="fitCenter"
-            android:tint="@color/transparent_white"
+            app:tint="@color/transparent_white"
             app:srcCompat="@drawable/user" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Tareas Asignadas"
+            android:text="@string/task_list"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />

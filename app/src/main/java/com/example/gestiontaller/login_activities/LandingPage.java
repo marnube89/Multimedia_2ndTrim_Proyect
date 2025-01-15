@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.aux_classes.CustomGraphics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -39,11 +40,6 @@ public class LandingPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        LinearLayout fondo = findViewById(R.id.main);
-        AnimationDrawable gradient_anim = (AnimationDrawable) fondo.getBackground();
-        gradient_anim.setEnterFadeDuration(2500);
-        gradient_anim.setExitFadeDuration(5000);
-        gradient_anim.start();
 
         Button signIn_bt = findViewById(R.id.signIn_button);
         signIn_bt.setOnClickListener(new View.OnClickListener() {
@@ -61,23 +57,8 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        //================================================
-        //En caso de querer ocultar todos los controles visibles por el usuario en el telefono debemos introducir los dos
-        //siguientes snnipets de codigo
-
-
-        //Esta linea de codigo le indica al telefono que debe ocultar la barra de notificaciones, se realiza mediante el uso de
-        //window flags
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //Mediante el controlador de nuestra ventana y la decoracion que tiene dentro, podemos ocultar tambien los controles del usuario
-        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(
-                getWindow(), getWindow().getDecorView()
-        );
-        controller.hide(WindowInsetsCompat.Type.systemBars());
-
-        //================================================
-
+        CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
+        CustomGraphics.hideUserControls(this);
 
     }
 

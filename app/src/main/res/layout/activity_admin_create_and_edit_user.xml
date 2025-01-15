@@ -18,7 +18,7 @@
         android:background="@drawable/rounded_corner_container"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Registrar/Editar Usuario"
+        android:text="@string/create_editUser"
         android:textSize="34sp" />
 
     <ScrollView
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:hint="Nombre Real"
+                android:hint="@string/real_name"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
-                android:hint="Mail"
+                android:hint="@string/mail"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
-                android:hint="Telefono"
+                android:hint="@string/phone_number"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +98,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
-                android:hint="Contraseña"
+                android:hint="@string/password"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -119,7 +119,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/half_round_container"
-                android:hint="Rol"
+                android:hint="@string/rol"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -171,7 +171,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Registrar/Editar Usuario"
+                android:text="@string/create_editUser"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -187,7 +187,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
         </LinearLayout>

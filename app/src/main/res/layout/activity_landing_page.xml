@@ -27,7 +27,7 @@
         android:background="@drawable/prueba"
         android:fontFamily="@font/audiowide"
         android:padding="15dp"
-        android:text="Bienvenido a Talleres Manolo"
+        android:text="@string/app_greetings"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -66,7 +66,7 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="45dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Registrate como cliente o inicia sesion si ya tienes una cuenta con nosotros."
+            android:text="@string/login_message"
             android:textAlignment="center"
             android:textColor="@color/grey"
             android:textSize="14sp" />
@@ -80,7 +80,7 @@
             android:layout_marginTop="45dp"
             android:background="@drawable/round_button_filled"
             android:fontFamily="sans-serif-medium"
-            android:text="Registrarse"
+            android:text="@string/sign_up"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -95,7 +95,7 @@
             android:layout_marginBottom="70dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="sans-serif-medium"
-            android:text="Iniciar sesion"
+            android:text="@string/sign_in"
             android:textAlignment="center"
             android:textSize="20sp" />
 

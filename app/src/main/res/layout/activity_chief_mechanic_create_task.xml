@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:background="@drawable/rounded_corner_container"
         android:padding="15dp"
-        android:text="Nueva Tarea"
+        android:text="@string/new_task"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_corner_container"
-                android:hint="Asignar Reparacion"
+                android:hint="@string/select_repair"
                 android:paddingTop="5dp"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/grey"
@@ -90,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
-                android:hint="Fecha Inicio"
+                android:hint="@string/date"
                 android:orientation="horizontal"
                 app:startIconScaleType="centerCrop">
 
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
-                android:text="Descripcion de la tarea:"
+                android:text="@string/task_des"
                 android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -146,7 +146,7 @@
                 android:backgroundTint="@color/softGreen"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Registrar Nueva Tarea"
+                android:text="@string/new_task"
                 android:textColor="@color/green"
                 android:textSize="20sp" />
 
@@ -162,7 +162,7 @@
                 android:backgroundTint="@color/softRed"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="Cancelar operacion"
+                android:text="@string/cancel_operation"
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 

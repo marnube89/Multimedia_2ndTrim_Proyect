@@ -40,7 +40,7 @@
             android:layout_marginHorizontal="15dp"
 
             android:gravity="center"
-            android:text="Bienvenido, Admin"
+            android:text="@string/greetings"
             android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="normal" />
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Usuarios Registrados"
+            android:text="@string/registered_employees"
             android:textSize="24sp" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:text="No hay empleados registrados"
+            android:text="@string/no_employees_shown"
             android:textAlignment="center"
             android:textSize="34sp"
             android:visibility="gone" />

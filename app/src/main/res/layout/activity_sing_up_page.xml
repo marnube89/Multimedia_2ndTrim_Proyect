@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
-            android:hint="Nombre Real"
+            android:hint="@string/real_name"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
-            android:hint="Mail"
+            android:hint="@string/mail"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
-            android:hint="Telefono"
+            android:hint="@string/phone_number"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
-            android:hint="Contraseña"
+            android:hint="@string/password"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
-            android:hint="Confirma contraseña"
+            android:hint="@string/confirm_password"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -126,7 +126,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_button_filled"
             android:fontFamily="sans-serif-medium"
-            android:text="Registrarse"
+            android:text="@string/sign_up"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
@@ -147,7 +147,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="¿Ya tienes una cuenta?"
+                android:text="@string/sign_in_question"
                 android:textColor="@color/grey"
                 android:textSize="15sp" />
 
@@ -159,7 +159,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/round_button_filled"
                 android:padding="8dp"
-                android:text="Inicia sesion"
+                android:text="@string/sign_in"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
