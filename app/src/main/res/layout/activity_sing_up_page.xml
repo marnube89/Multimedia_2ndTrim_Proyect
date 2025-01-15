@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".login_activities.SingUpPage">
+    tools:context=".views.login_activities.SingUpPage">
 
     <Space
         android:layout_width="match_parent"

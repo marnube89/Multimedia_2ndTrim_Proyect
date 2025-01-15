@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".client.Client_Profile">
+    tools:context=".views.client.Client_Profile">
 
     <TextView
         android:id="@+id/textView32"

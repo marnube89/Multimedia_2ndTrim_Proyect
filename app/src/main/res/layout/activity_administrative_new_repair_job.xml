@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".administrative.Administrative_NewRepairJob">
+    tools:context=".views.administrative.Administrative_NewRepairJob">
 
     <TextView
         android:id="@+id/textView14"
