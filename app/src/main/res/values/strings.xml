@@ -59,4 +59,5 @@
     <string name="sign_up_question">Not yet registered?</string>
     <string name="confirm_password">Comfirm password</string>
     <string name="sign_in_question">Already have an account?</string>
+    <string name="task_number">Task number</string>
 </resources>

@@ -17,9 +17,9 @@ import com.example.gestiontaller.data_classes.User;
 
 import java.util.ArrayList;
 
-public class AdminUsersAdapter extends ArrayAdapter<User> {
+public class UsersAdapter extends ArrayAdapter<User> {
     private ArrayList<User> data;
-    public AdminUsersAdapter(Context context, ArrayList<User> data) {
+    public UsersAdapter(Context context, ArrayList<User> data) {
         super(context, R.layout.admin_user_list_item, data);
         this.data = data;
     }

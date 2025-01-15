@@ -17,7 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.gestiontaller.adapters.AdminUsersAdapter;
+import com.example.gestiontaller.adapters.UsersAdapter;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
@@ -54,7 +54,7 @@ public class AdminMainPage extends AppCompatActivity {
         CustomGraphics.hideUserControls(this);
 
         employees = findViewById(R.id.employeeList);
-        AdminUsersAdapter adapter = new AdminUsersAdapter(AdminMainPage.this, users);
+        UsersAdapter adapter = new UsersAdapter(AdminMainPage.this, users);
         employees.setAdapter(adapter);
         TextView noUsersText = findViewById(R.id.noUserText);
         database.child("users").addValueEventListener(new ValueEventListener() {

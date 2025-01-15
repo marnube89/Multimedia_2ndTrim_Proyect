@@ -1,24 +1,45 @@
 package com.example.gestiontaller.data_classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RepairTask {
     private String taskNumber; //RepairJob number + taskNumber
-    private User chiefMechanic;
+    private String chiefMechanic;
     private ArrayList<User> mechanics;
     private boolean completed;
     private String startDate; //To later be change to the correct format
     private String finishDate; //To later be change to the correct format
+    private String description;
 
     public RepairTask() {
     }
 
-    public RepairTask(String taskNumber, User chiefMechanic, ArrayList<User> mechanics, String startDate) {
+    public RepairTask(String taskNumber, String chiefMechanic, String startDate, String desc) {
         this.taskNumber = taskNumber;
         this.chiefMechanic = chiefMechanic;
-        this.mechanics = mechanics;
         this.startDate = startDate;
         this.completed = false;
+        this.description = desc;
+    }
+
+    public RepairTask(HashMap<String, Object> map){
+        this.taskNumber = (String) map.get("taskNumber");
+        this.chiefMechanic = (String) map.get("chiefMechanic");
+        this.mechanics = (ArrayList<User>) map.get("mechanics");
+        this.completed = (boolean) map.get("completed");
+        this.startDate = (String) map.get("startDate");
+        if(map.get("finishDate")!=null){
+            this.finishDate = (String) map.get("finishDate");
+        }
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTaskNumber() {
@@ -29,11 +50,11 @@ public class RepairTask {
         this.taskNumber = taskNumber;
     }
 
-    public User getChiefMechanic() {
+    public String getChiefMechanic() {
         return chiefMechanic;
     }
 
-    public void setChiefMechanic(User chiefMechanic) {
+    public void setChiefMechanic(String chiefMechanic) {
         this.chiefMechanic = chiefMechanic;
     }
 
