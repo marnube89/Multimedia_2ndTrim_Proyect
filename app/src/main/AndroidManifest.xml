@@ -25,16 +25,7 @@
             android:name=".views.mechanic.Mechanic_SelectedTask"
             android:exported="false" />
         <activity
-            android:name=".Mechanic_AddCommentsToTask"
-            android:exported="false" />
-        <activity
-            android:name=".Mechanic_OrderPartsForJobs"
-            android:exported="false" />
-        <activity
             android:name=".views.mechanic.Mechanic_ModifyTask"
-            android:exported="false" />
-        <activity
-            android:name=".Mechanic_CheckJobs"
             android:exported="false" />
         <activity
             android:name=".views.chief_mechanic.ChiefMechanic_AsignMechanicsToTask"
