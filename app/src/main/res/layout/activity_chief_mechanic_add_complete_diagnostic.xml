@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".ChiefMechanic_Add_Complete_Diagnostic">
+    tools:context=".chief_mechanic.ChiefMechanic_Add_Complete_Diagnostic">
 
     <TextView
         android:id="@+id/textView"

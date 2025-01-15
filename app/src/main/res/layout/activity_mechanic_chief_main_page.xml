@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".MechanicChiefMainPage">
+    tools:context=".chief_mechanic.MechanicChiefMainPage">
 
     <LinearLayout
         android:layout_width="match_parent"

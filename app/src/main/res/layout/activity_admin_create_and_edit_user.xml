@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".Admin_createAndEditUser">
+    tools:context=".admin.Admin_createAndEditUser">
 
     <TextView
         android:id="@+id/textView7"

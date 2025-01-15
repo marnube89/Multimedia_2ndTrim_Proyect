@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".AdministrativeMainPage">
+    tools:context=".administrative.AdministrativeMainPage">
 
     <LinearLayout
         android:layout_width="match_parent"

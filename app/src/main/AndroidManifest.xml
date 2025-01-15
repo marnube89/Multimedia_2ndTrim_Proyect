@@ -13,16 +13,16 @@
         android:theme="@style/Theme.GestionTaller"
         tools:targetApi="31">
         <activity
-            android:name=".ChiefMechanic_Add_Complete_Diagnostic"
+            android:name=".chief_mechanic.ChiefMechanic_Add_Complete_Diagnostic"
             android:exported="false" />
         <activity
-            android:name=".Client_RepairDetails"
+            android:name=".client.Client_RepairDetails"
             android:exported="false" />
         <activity
-            android:name=".Client_Profile"
+            android:name=".client.Client_Profile"
             android:exported="false" />
         <activity
-            android:name=".Mechanic_SelectedTask"
+            android:name=".mechanic.Mechanic_SelectedTask"
             android:exported="false" />
         <activity
             android:name=".Mechanic_AddCommentsToTask"
@@ -31,67 +31,67 @@
             android:name=".Mechanic_OrderPartsForJobs"
             android:exported="false" />
         <activity
-            android:name=".Mechanic_ModifyTask"
+            android:name=".mechanic.Mechanic_ModifyTask"
             android:exported="false" />
         <activity
             android:name=".Mechanic_CheckJobs"
             android:exported="false" />
         <activity
-            android:name=".ChiefMechanic_AsignMechanicsToTask"
+            android:name=".chief_mechanic.ChiefMechanic_AsignMechanicsToTask"
             android:exported="false" />
         <activity
-            android:name=".ChiefMechanic_CheckAsignedRepairs"
+            android:name=".chief_mechanic.ChiefMechanic_CheckAsignedRepairs"
             android:exported="false" />
         <activity
-            android:name=".ChiefMechanic_CreateTask"
+            android:name=".chief_mechanic.ChiefMechanic_CreateTask"
             android:exported="false" />
         <activity
-            android:name=".ChiefMechanic_CompleteTasks"
+            android:name=".chief_mechanic.ChiefMechanic_CompleteTasks"
             android:exported="false" />
         <activity
-            android:name=".Administrative_AsignMechanicsToRepairJob"
+            android:name=".administrative.Administrative_AsignMechanicsToRepairJob"
             android:exported="false" />
         <activity
-            android:name=".Administrative_NewRepairJob"
+            android:name=".administrative.Administrative_NewRepairJob"
             android:exported="false" />
         <activity
-            android:name=".Administrative_newCarEntry"
+            android:name=".administrative.Administrative_newCarEntry"
             android:exported="false" />
         <activity
-            android:name=".Administrative_OrderParts"
+            android:name=".administrative.Administrative_OrderParts"
             android:exported="false" />
         <activity
-            android:name=".Administrative_CheckPartsStock"
+            android:name=".administrative.Administrative_CheckPartsStock"
             android:exported="false" />
         <activity
-            android:name=".Administrative_asignCarsToChiefMechanic"
+            android:name=".administrative.Administrative_asignCarsToChiefMechanic"
             android:exported="false" />
         <activity
-            android:name=".Admin_createAndEditUser"
+            android:name=".admin.Admin_createAndEditUser"
             android:exported="false" />
         <activity
-            android:name=".ClientMainPage"
+            android:name=".client.ClientMainPage"
             android:exported="false" />
         <activity
-            android:name=".MechanicMainPage"
+            android:name=".mechanic.MechanicMainPage"
             android:exported="false" />
         <activity
-            android:name=".MechanicChiefMainPage"
+            android:name=".chief_mechanic.MechanicChiefMainPage"
             android:exported="false" />
         <activity
-            android:name=".AdministrativeMainPage"
+            android:name=".administrative.AdministrativeMainPage"
             android:exported="false" />
         <activity
-            android:name=".AdminMainPage"
+            android:name=".admin.AdminMainPage"
             android:exported="false" />
         <activity
-            android:name=".SingUpPage"
+            android:name=".login_activities.SingUpPage"
             android:exported="false" />
         <activity
-            android:name=".SignInPage"
+            android:name=".login_activities.SignInPage"
             android:exported="false" />
         <activity
-            android:name=".LandingPage"
+            android:name=".login_activities.LandingPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

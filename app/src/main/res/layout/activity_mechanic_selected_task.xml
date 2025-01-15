@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdient_list"
     android:orientation="vertical"
-    tools:context=".Mechanic_SelectedTask">
+    tools:context=".mechanic.Mechanic_SelectedTask">
 
     <TextView
         android:id="@+id/textView29"
