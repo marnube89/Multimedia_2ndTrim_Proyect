@@ -13,6 +13,63 @@
         android:theme="@style/Theme.GestionTaller"
         tools:targetApi="31">
         <activity
+            android:name=".ChiefMechanic_Add_Complete_Diagnostic"
+            android:exported="false" />
+        <activity
+            android:name=".Client_RepairDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Client_Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Mechanic_SelectedTask"
+            android:exported="false" />
+        <activity
+            android:name=".Mechanic_AddCommentsToTask"
+            android:exported="false" />
+        <activity
+            android:name=".Mechanic_OrderPartsForJobs"
+            android:exported="false" />
+        <activity
+            android:name=".Mechanic_ModifyTask"
+            android:exported="false" />
+        <activity
+            android:name=".Mechanic_CheckJobs"
+            android:exported="false" />
+        <activity
+            android:name=".ChiefMechanic_AsignMechanicsToTask"
+            android:exported="false" />
+        <activity
+            android:name=".ChiefMechanic_CheckAsignedRepairs"
+            android:exported="false" />
+        <activity
+            android:name=".ChiefMechanic_CreateTask"
+            android:exported="false" />
+        <activity
+            android:name=".ChiefMechanic_CompleteTasks"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_AsignMechanicsToRepairJob"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_NewRepairJob"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_newCarEntry"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_OrderParts"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_CheckPartsStock"
+            android:exported="false" />
+        <activity
+            android:name=".Administrative_asignCarsToChiefMechanic"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_createAndEditUser"
+            android:exported="false" />
+        <activity
             android:name=".ClientMainPage"
             android:exported="false" />
         <activity

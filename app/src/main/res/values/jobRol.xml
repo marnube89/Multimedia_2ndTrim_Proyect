@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="rol">
+        <item>Administrativo</item>
+        <item>Mecanico</item>
+        <item>Jefe Mecanico</item>
+    </array>
+</resources>

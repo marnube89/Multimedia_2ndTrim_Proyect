@@ -41,7 +41,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Bienvenido, Administrativo"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -87,7 +88,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
@@ -104,21 +105,14 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/asignMechanicsTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Asignar mecanicos"
                                 android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="TextView" />
-
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/asignMechanicsBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -141,21 +135,14 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/newEntryTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Registrar Entrada"
                                 android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="TextView" />
-
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/newEntryBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -178,21 +165,14 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/notifyClientTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Notificar al cliente"
                                 android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="TextView" />
-
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/notifyClientBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -206,7 +186,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
@@ -223,21 +203,21 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/assignCarTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Asignar coche"
                                 android:textSize="20sp" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/assignCarSubtittle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="TextView" />
+                                android:text="Jefe mecanico" />
 
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/asignCarsBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -260,21 +240,14 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/newRepairTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Dar de alta reparaciones"
                                 android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="TextView" />
-
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/newRepairBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -297,21 +270,14 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/checkStockTittle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="TituloTarea"
+                                android:text="Consultar stock de piezas"
                                 android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/textView5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="TextView" />
-
                             <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/button2"
+                                android:id="@+id/checkStockBt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -338,10 +304,10 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/newOrderTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TituloTarea"
+                        android:text="Realizar pedido"
                         android:textSize="20sp" />
 
                     <TextView
@@ -349,10 +315,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="TextView" />
+                        android:text="A proveedor" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/newPiecesOrderBt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

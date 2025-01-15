@@ -41,7 +41,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Bienvenido, Mecanico Jefe"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -91,21 +92,14 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/completeTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TituloTarea"
+                        android:text="Completar Tareas"
                         android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="TextView" />
-
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/completeTasks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -128,21 +122,14 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/newTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TituloTarea"
+                        android:text="Definir Tareas"
                         android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="TextView" />
-
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/newTasks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -165,21 +152,14 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/checkRepairsTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TituloTarea"
+                        android:text="Consultar Reparaciones"
                         android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="TextView" />
-
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/checkRepairs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -202,21 +182,14 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/asignMechanicsToTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TituloTarea"
+                        android:text="Asignar mecanicos a tareas"
                         android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="TextView" />
-
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button2"
+                        android:id="@+id/asignMechanicsToTask"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

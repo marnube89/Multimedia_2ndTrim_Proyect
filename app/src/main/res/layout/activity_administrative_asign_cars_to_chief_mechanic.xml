@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grdient_list"
+    android:orientation="vertical"
+    tools:context=".Administrative_asignCarsToChiefMechanic">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_corner_container"
+        android:padding="15dp"
+        android:text="Asignar Mecanicos a coches"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner_container"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/car_selector"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/half_round_container"
+                android:hint="Matricula"
+                android:paddingTop="5dp"
+                android:textColorHint="@color/grey"
+                app:boxBackgroundColor="@color/grey"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@color/grey"
+                app:boxStrokeErrorColor="@color/red"
+                app:boxStrokeWidth="1dp"
+                app:counterOverflowTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:counterOverflowTextColor="@color/red"
+                app:counterTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:counterTextColor="@color/grey"
+                app:cursorErrorColor="@color/red"
+                app:endIconMode="dropdown_menu"
+                app:endIconScaleType="centerCrop"
+                app:endIconTint="@color/purple"
+                app:errorIconTint="@color/red"
+                app:errorTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:errorTextColor="@color/red"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:helperTextTextColor="@color/grey"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:hintTextColor="@color/grey"
+                app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:placeholderTextColor="@color/grey"
+                app:prefixTextColor="@color/grey"
+                app:startIconTint="@color/grey"
+                app:suffixTextColor="@color/grey">
+
+                <AutoCompleteTextView
+                    android:id="@+id/carSelectorTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_container"
+                    android:inputType="none"
+                    android:padding="15dp"
+                    app:simpleItems="@array/rol" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/chiefMechanicSelector"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:background="@drawable/inverted_half_round_container"
+                android:hint="Jefe Mecanico"
+                android:paddingTop="5dp"
+                android:textColorHint="@color/grey"
+                app:boxBackgroundColor="@color/grey"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@color/grey"
+                app:boxStrokeErrorColor="@color/red"
+                app:boxStrokeWidth="0dp"
+                app:counterOverflowTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:counterOverflowTextColor="@color/red"
+                app:counterTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:counterTextColor="@color/grey"
+                app:cursorErrorColor="@color/red"
+                app:endIconMode="dropdown_menu"
+                app:endIconScaleType="centerCrop"
+                app:endIconTint="@color/purple"
+                app:errorIconTint="@color/red"
+                app:errorTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:errorTextColor="@color/red"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:helperTextTextColor="@color/grey"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:hintTextColor="@color/grey"
+                app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:placeholderTextColor="@color/grey"
+                app:prefixTextColor="@color/grey"
+                app:startIconTint="@color/grey"
+                app:suffixTextColor="@color/grey">
+
+                <AutoCompleteTextView
+                    android:id="@+id/chiefMechanicTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_container"
+                    android:inputType="none"
+                    android:padding="15dp"
+                    app:simpleItems="@array/rol" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/confirmButton"
+                style="@android:style/Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/half_round_container"
+                android:backgroundTint="@color/softGreen"
+                android:fontFamily="sans-serif-medium"
+                android:padding="15dp"
+                android:text="Asginar Coche"
+                android:textColor="@color/green"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancelButton"
+                style="@android:style/Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/inverted_half_round_container"
+                android:backgroundTint="@color/softRed"
+                android:fontFamily="sans-serif-medium"
+                android:padding="15dp"
+                android:text="Cancelar operacion"
+                android:textColor="@color/red"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

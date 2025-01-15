@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "775551161267",
+    "firebase_url": "https://mechanicshopdb-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mechanicshopdb",
+    "storage_bucket": "mechanicshopdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775551161267:android:68afd7eb22d442bf81b1c6",
+        "android_client_info": {
+          "package_name": "com.example.gestiontaller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLtW2kDCtpmieIJOMN9J3ElPYx2THGaiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

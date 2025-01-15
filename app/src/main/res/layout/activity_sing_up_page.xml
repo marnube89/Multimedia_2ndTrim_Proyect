@@ -22,15 +22,16 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/user_textField"
+            android:id="@+id/fullName_textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
-            android:hint="Usuario"
+            android:hint="Nombre Real"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fullName_field"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -49,6 +50,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mail_field"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -67,6 +69,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tlf_field"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -85,6 +88,7 @@
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pass_field"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/transparent_white"
@@ -103,6 +107,7 @@
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPass_field"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/transparent_white"
@@ -112,7 +117,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signUp"
+            android:id="@+id/signUp_button"
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,7 +152,7 @@
                 android:textSize="15sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/goTo_signIn"
+                android:id="@+id/goTo_signUp"
                 style="@android:style/Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
