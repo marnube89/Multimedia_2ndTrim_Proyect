@@ -45,7 +45,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/listTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
@@ -55,6 +55,7 @@
                     android:textStyle="bold" />
 
                 <ListView
+                    android:id="@+id/mechanicsList"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_margin="15dp"
@@ -100,7 +101,7 @@
                 app:suffixTextColor="@color/grey">
 
                 <AutoCompleteTextView
-                    android:id="@+id/taskTextField"
+                    android:id="@+id/taskNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corner_container"

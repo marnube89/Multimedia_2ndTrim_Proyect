@@ -100,14 +100,14 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(car.getText().toString().isEmpty()) && !(date.getText().toString().isEmpty())){
+                if(!car.getText().toString().isEmpty() && !date.getText().toString().isEmpty() && !desc.getText().toString().isEmpty()){
                     database.child("carInShop").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for(DataSnapshot postSnapshot: snapshot.getChildren()){
                                 CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
                                 if(userTemp.getLicensePlate().equals(car.getText().toString())){
-                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic());
+                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic(), desc.getText().toString());
                                     database.child("repairJobs").child(repairTemp.getRepairNumber()).setValue(repairTemp);
                                     finish();
                                     break;

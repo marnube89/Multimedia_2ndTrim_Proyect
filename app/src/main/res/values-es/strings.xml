@@ -61,4 +61,6 @@
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="sign_in_question">¿Ya tienes una cuenta?</string>
     <string name="task_number">Numero de tarea</string>
+    <string name="editDesc">Editar desc</string>
+    <string name="task_comnt">Comentarios de la tarea</string>
 </resources>

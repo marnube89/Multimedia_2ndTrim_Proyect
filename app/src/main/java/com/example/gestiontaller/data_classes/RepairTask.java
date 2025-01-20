@@ -1,37 +1,50 @@
 package com.example.gestiontaller.data_classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RepairTask {
+public class RepairTask implements Serializable {
     private String taskNumber; //RepairJob number + taskNumber
     private String chiefMechanic;
-    private ArrayList<User> mechanics;
+    private ArrayList<String> mechanics;
     private boolean completed;
     private String startDate; //To later be change to the correct format
     private String finishDate; //To later be change to the correct format
     private String description;
+    private String repairNumber;
 
     public RepairTask() {
     }
 
-    public RepairTask(String taskNumber, String chiefMechanic, String startDate, String desc) {
+    public RepairTask(String taskNumber, String chiefMechanic, String startDate, String desc, String repairNumber) {
         this.taskNumber = taskNumber;
         this.chiefMechanic = chiefMechanic;
         this.startDate = startDate;
         this.completed = false;
         this.description = desc;
+        this.repairNumber = repairNumber;
     }
 
     public RepairTask(HashMap<String, Object> map){
         this.taskNumber = (String) map.get("taskNumber");
         this.chiefMechanic = (String) map.get("chiefMechanic");
-        this.mechanics = (ArrayList<User>) map.get("mechanics");
+        this.mechanics = (ArrayList<String>) map.get("mechanics");
         this.completed = (boolean) map.get("completed");
         this.startDate = (String) map.get("startDate");
+        this.description = (String) map.get("description");
         if(map.get("finishDate")!=null){
             this.finishDate = (String) map.get("finishDate");
         }
+        this.repairNumber = (String) map.get("repairNumber");
+    }
+
+    public String getRepairNumber() {
+        return repairNumber;
+    }
+
+    public void setRepairNumber(String repairNumber) {
+        this.repairNumber = repairNumber;
     }
 
     public String getDescription() {
@@ -58,11 +71,11 @@ public class RepairTask {
         this.chiefMechanic = chiefMechanic;
     }
 
-    public ArrayList<User> getMechanics() {
+    public ArrayList<String> getMechanics() {
         return mechanics;
     }
 
-    public void setMechanics(ArrayList<User> mechanics) {
+    public void setMechanics(ArrayList<String> mechanics) {
         this.mechanics = mechanics;
     }
 

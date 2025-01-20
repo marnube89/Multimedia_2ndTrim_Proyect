@@ -103,9 +103,10 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                             repairData[0] = new RepairJob((HashMap<String, Object>) task.getResult().getValue());
+
                         }
                     });
-                    RepairTask newTask = new RepairTask(Integer.toString(taskNumber), repairData[0].getChiefMechanic(), date.getText().toString(), desc.getText().toString());
+                    RepairTask newTask = new RepairTask(Integer.toString(taskNumber), repairData[0].getChiefMechanic(), date.getText().toString(), desc.getText().toString(), repairData[0].getRepairNumber());
                     database.child("tasks").child(Integer.toString(taskNumber)).setValue(newTask);
                     finish();
                 }

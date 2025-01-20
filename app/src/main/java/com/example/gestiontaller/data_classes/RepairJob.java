@@ -26,7 +26,7 @@ public class RepairJob implements Serializable {
         this.repairTasks = new ArrayList<>();
     }
 
-    public RepairJob(String repairNumber, String car, String startDate, String chiefMechanic) {
+    public RepairJob(String repairNumber, String car, String startDate, String chiefMechanic, String description) {
         this.repairNumber = repairNumber;
         this.car = car;
         this.startDate = startDate;
@@ -34,6 +34,7 @@ public class RepairJob implements Serializable {
         this.diagnostic = "";
         this.mechanics = new ArrayList<>();
         this.repairTasks = new ArrayList<>();
+        this.description = description;
     }
 
     public RepairJob(HashMap<String, Object> map){
@@ -41,6 +42,7 @@ public class RepairJob implements Serializable {
         this.car = (String) map.get("car");
         this.startDate = (String) map.get("startDate");
         this.chiefMechanic = (String) map.get("chiefMechanic");
+        this.description = (String) map.get("description");
         if(map.containsKey("diagnostic")){
             this.diagnostic = (String) map.get("diagnostic");
         }else{

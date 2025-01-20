@@ -22,13 +22,6 @@
         android:textSize="34sp"
         android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="0"
-        android:orientation="horizontal"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +36,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name_textField"
+                android:id="@+id/taskTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
@@ -53,6 +46,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/taskContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -63,7 +57,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/licensePlate_textField"
+                android:id="@+id/repairJobTextField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="40dp"
@@ -73,6 +67,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/repairContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -83,6 +78,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/descContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
@@ -90,7 +86,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView30"
+                    android:id="@+id/descTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -102,7 +98,7 @@
                     android:id="@+id/description_textField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/transparent_white"
@@ -111,17 +107,53 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/descContent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:backgroundTint="@color/transparent_white"
                         android:backgroundTintMode="src_over"
-                        android:editable="false" />
+                        android:editable="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/descButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/rounded_corner_container"
+                    android:backgroundTint="@color/material_dynamic_neutral70"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/orderPieces"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button_filled"
+                        android:backgroundTint="@color/softBlue"
+                        android:text="@string/order_new_parts" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/editDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/editDesc"
+                        android:background="@drawable/round_button_filled"
+                        android:backgroundTint="@color/softBlue" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/mechanicsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
@@ -129,7 +161,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView31"
+                    android:id="@+id/mechanicsListTittle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
@@ -138,11 +170,63 @@
                     android:textSize="20sp" />
 
                 <ListView
+                    android:id="@+id/mechanicsListView"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_margin="15dp"
                     android:clickable="false"
                     android:minHeight="250dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/commentsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corner_container"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/commentsTittle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="@string/task_comnt"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/commentsTextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/transparent_white"
+                    android:gravity="start"
+                    android:minHeight="100dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/commentsContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/transparent_white"
+                        android:backgroundTintMode="src_over"
+                        android:editable="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/commentTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_button_filled"
+                    android:text="comentar" />
+
             </LinearLayout>
 
         </LinearLayout>

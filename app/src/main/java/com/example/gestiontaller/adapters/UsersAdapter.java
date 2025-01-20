@@ -19,9 +19,16 @@ import java.util.ArrayList;
 
 public class UsersAdapter extends ArrayAdapter<User> {
     private ArrayList<User> data;
+    private boolean showCheck;
     public UsersAdapter(Context context, ArrayList<User> data) {
         super(context, R.layout.admin_user_list_item, data);
         this.data = data;
+        showCheck = true;
+    }
+    public UsersAdapter(Context context, ArrayList<User> data, boolean showCheck) {
+        super(context, R.layout.admin_user_list_item, data);
+        this.data = data;
+        this.showCheck = showCheck;
     }
 
     @Override
@@ -47,6 +54,10 @@ public class UsersAdapter extends ArrayAdapter<User> {
                     }
                 }
             });
+
+            if(!showCheck){
+                userSelected.setVisibility(View.INVISIBLE);
+            }
             element.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -1,6 +1,7 @@
 package com.example.gestiontaller.views.mechanic;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,5 +31,7 @@ public class MechanicMainPage extends AppCompatActivity {
 
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
+        ListView tasks = findViewById(R.id.taskList);
+
     }
 }

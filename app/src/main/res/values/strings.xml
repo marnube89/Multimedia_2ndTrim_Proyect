@@ -60,4 +60,6 @@
     <string name="confirm_password">Comfirm password</string>
     <string name="sign_in_question">Already have an account?</string>
     <string name="task_number">Task number</string>
+    <string name="editDesc">Edit desc</string>
+    <string name="task_comnt">Task comments</string>
 </resources>
