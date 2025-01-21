@@ -64,4 +64,7 @@
     <string name="task_comnt">Task comments</string>
     <string name="repair_diagnostic">Repair Diagnostic</string>
     <string name="respond_diagnostic">Respond diagnostic</string>
+    <string name="profile_info">Profile info</string>
+    <string name="contact_car_shop">Contact car shop</string>
+    <string name="log_out">Log out</string>
 </resources>

@@ -46,7 +46,22 @@ public class Administrative_CheckPartsStock extends AppCompatActivity {
 
         ListView partsAvailable = findViewById(R.id.partsAvailable);
         ListView partsNotAvailable = findViewById(R.id.partsNotAvailable);
+        Stock_Item_Adapter availableAdaptor = new Stock_Item_Adapter(Administrative_CheckPartsStock.this, available);
+        Stock_Item_Adapter notAvailableAdaptor = new Stock_Item_Adapter(Administrative_CheckPartsStock.this, notAvailable);
 
+        partsAvailable.setAdapter(availableAdaptor);
+        partsNotAvailable.setAdapter(notAvailableAdaptor);
+
+        //Carga de piezas
+        loadPartsStock(availableAdaptor, notAvailableAdaptor);
+    }
+
+    /**
+     * Carga los datos de todas las piezas disponibles y las agrupa en con stock y sin stock
+     * @param availableAdaptor adaptador con stock
+     * @param notAvailableAdaptor adaptador sin stock
+     */
+    private void loadPartsStock(Stock_Item_Adapter availableAdaptor, Stock_Item_Adapter notAvailableAdaptor) {
         database.child("carParts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -58,10 +73,9 @@ public class Administrative_CheckPartsStock extends AppCompatActivity {
                         available.add(partTemp);
                     }
                 }
-                Stock_Item_Adapter availableAdaptor = new Stock_Item_Adapter(Administrative_CheckPartsStock.this, available);
-                Stock_Item_Adapter notAvailableAdaptor = new Stock_Item_Adapter(Administrative_CheckPartsStock.this, notAvailable);
-                partsAvailable.setAdapter(availableAdaptor);
-                partsNotAvailable.setAdapter(notAvailableAdaptor);
+                availableAdaptor.notifyDataSetChanged();
+                notAvailableAdaptor.notifyDataSetChanged();
+
             }
 
             @Override
@@ -69,10 +83,5 @@ public class Administrative_CheckPartsStock extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 }

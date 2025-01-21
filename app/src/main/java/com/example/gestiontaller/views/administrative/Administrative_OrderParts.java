@@ -58,7 +58,7 @@ public class Administrative_OrderParts extends AppCompatActivity {
         TextView priceTittle = findViewById(R.id.unitPriceTittle);
         TextView total = findViewById(R.id.totalNumber);
 
-
+        //Carga y actualiza el adaptador de los proveedores
         database.child("retailer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,7 +79,9 @@ public class Administrative_OrderParts extends AppCompatActivity {
 
             }
         });
-        //No entiendo nada, ahora si me esta guardando las cosas donde debe
+
+
+        //Guarda y actualiza las piezas disponibles por el proveedor seleccionado
         HashMap<String, CarPart> carPartArrayList = new HashMap<String, CarPart>();
         supplier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -97,6 +99,7 @@ public class Administrative_OrderParts extends AppCompatActivity {
                             if(temPart.getRetailerName().equals(selectedRetailer)){
                                 carPartNames.add(temPart.getName());
                                 carPartArrayList.put(postShot.getKey(), temPart);
+                                //it just works
                             }
                         }
 
@@ -111,8 +114,10 @@ public class Administrative_OrderParts extends AppCompatActivity {
                 });
             }
         });
+
         final CarPart[] partSelected = new CarPart[1];
         final String[] partId = new String[1];
+        //Cuando seleccionas una pieza, los campos referentes a precio se actualizan
         piece.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -127,6 +132,8 @@ public class Administrative_OrderParts extends AppCompatActivity {
                 });
             }
         });
+
+        //Actualizara el texto a medida que se vaya escribiendo
         units.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -135,8 +142,12 @@ public class Administrative_OrderParts extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(units.getText().toString().isEmpty()){
+                    units.setText("0");
+                }
                 uds = Integer.parseInt(units.getText().toString());
                 total.setText(Long.toString(uds*priceUd)+"€");
+
             }
 
             @Override
@@ -145,6 +156,7 @@ public class Administrative_OrderParts extends AppCompatActivity {
             }
         });
 
+        //Confirma y actualiza las piezas compradas
         AppCompatButton confirm = findViewById(R.id.confirm);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +166,8 @@ public class Administrative_OrderParts extends AppCompatActivity {
                 finish();
             }
         });
+
+        //cancela la operacion
         AppCompatButton cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

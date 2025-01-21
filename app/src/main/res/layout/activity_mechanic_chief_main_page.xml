@@ -92,36 +92,6 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/completeTaskTittle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/finish_task"
-                        android:textSize="20sp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/completeTasks"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corner_container"
-                        android:backgroundTint="@color/blue"
-                        android:fontFamily="sans-serif"
-                        android:text="Button"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/transparent_white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rounded_corner_container"
-                    android:backgroundTint="@color/softBlue"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <TextView
                         android:id="@+id/newTaskTittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

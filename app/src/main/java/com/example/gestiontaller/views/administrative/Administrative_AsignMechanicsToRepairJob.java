@@ -47,51 +47,21 @@ public class Administrative_AsignMechanicsToRepairJob extends AppCompatActivity 
 
         AutoCompleteTextView repair = findViewById(R.id.repairSelector);
         ArrayList<String> repairs = new ArrayList<String>();
-        database.child("repairJobs").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(repairs.size()>0){
-                    repairs.removeAll(repairs);
-                }
+        ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_AsignMechanicsToRepairJob.this, android.R.layout.simple_spinner_dropdown_item, repairs);
+        repair.setAdapter(licensePlate);
 
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    RepairJob repairTemp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
-                    repairs.add(repairTemp.getRepairNumber());
-                }
-                ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_AsignMechanicsToRepairJob.this, android.R.layout.simple_spinner_dropdown_item, repairs);
-                repair.setAdapter(licensePlate);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("Info", "Fin de lectura");
-            }
-        });
+        //Carga las reparaciones disponibles
+        loadRepairJobs(repairs, licensePlate);
 
         AutoCompleteTextView mechanic = findViewById(R.id.mechanicSelector);
         ArrayList<String> mechanics = new ArrayList<String>();
-        database.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(mechanics.size()>0){
-                    mechanics.removeAll(mechanics);
-                }
+        ArrayAdapter<String> chiefName = new ArrayAdapter<String>(Administrative_AsignMechanicsToRepairJob.this, android.R.layout.simple_spinner_dropdown_item, mechanics);
+        mechanic.setAdapter(chiefName);
 
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    User userTemp = new User((HashMap<String, Object>) postSnapshot.getValue());
-                    if(userTemp.getJobRol()==4){
-                        mechanics.add(userTemp.getFullName());
-                    }
+        //Carga los mecanicos disponibles
+        loadMechanics(mechanics, chiefName);
 
-                }
-                ArrayAdapter<String> chiefName = new ArrayAdapter<String>(Administrative_AsignMechanicsToRepairJob.this, android.R.layout.simple_spinner_dropdown_item, mechanics);
-                mechanic.setAdapter(chiefName);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("Info", "Fin de lectura");
-            }
-        });
-
+        //Confirma y guarda los datos en la base de datos
         AppCompatButton confirm = findViewById(R.id.confirmBt);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,15 +81,14 @@ public class Administrative_AsignMechanicsToRepairJob extends AppCompatActivity 
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
         });
 
+        //Cancelar operacion
         AppCompatButton cancel = findViewById(R.id.cancelBt);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,5 +97,62 @@ public class Administrative_AsignMechanicsToRepairJob extends AppCompatActivity 
             }
         });
 
+    }
+
+    /**
+     * Carga y actualiza los mecanicos disponibles en el adaptador
+     * @param mechanics lista de mecanicos
+     * @param chiefName adaptador a actualizar
+     */
+    private void loadMechanics(ArrayList<String> mechanics, ArrayAdapter<String> chiefName) {
+        database.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(mechanics.size()>0){
+                    mechanics.removeAll(mechanics);
+                }
+
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    User userTemp = new User((HashMap<String, Object>) postSnapshot.getValue());
+                    if(userTemp.getJobRol()==4){
+                        mechanics.add(userTemp.getFullName());
+                    }
+
+                }
+                chiefName.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("Info", "Fin de lectura");
+            }
+        });
+    }
+
+    /**
+     * Carga las reparaciones disponibles
+     * @param repairs
+     * @param licensePlate
+     */
+    private void loadRepairJobs(ArrayList<String> repairs, ArrayAdapter<String> licensePlate) {
+        database.child("repairJobs").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(repairs.size()>0){
+                    repairs.removeAll(repairs);
+                }
+
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    RepairJob repairTemp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
+                    if(!repairTemp.getFinished()){
+                        repairs.add(repairTemp.getRepairNumber());
+                    }
+                }
+                licensePlate.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("Info", "Fin de lectura");
+            }
+        });
     }
 }

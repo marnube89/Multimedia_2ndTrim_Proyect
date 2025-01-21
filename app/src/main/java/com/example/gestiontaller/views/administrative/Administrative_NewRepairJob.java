@@ -47,6 +47,87 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        //Genera un nuevo numero de reparacion
+        generateRepairNumber();
+
+        TextView repairNumberTittle = findViewById(R.id.repairNumberTittle);
+        repairNumberTittle.setText("Reparacion Nº: " + repairNumber);
+        AppCompatButton confirm = findViewById(R.id.confirm);
+        AutoCompleteTextView car = findViewById(R.id.carSelectorTextField);
+        TextInputEditText date = findViewById(R.id.date_TextEdit);
+        TextInputEditText desc = findViewById(R.id.description);
+        final String[] chiefMechanic = {""};
+
+        ArrayList<String> carsInShop = new ArrayList<String>();
+        ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_NewRepairJob.this, android.R.layout.simple_spinner_dropdown_item, carsInShop);
+        car.setAdapter(licensePlate);
+
+        //Carga los datos del adaptador
+        loadCarsInShop(carsInShop, licensePlate);
+
+        //Confirma y guarda los datos en la base de datos
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!car.getText().toString().isEmpty() && !date.getText().toString().isEmpty() && !desc.getText().toString().isEmpty()){
+                    database.child("carInShop").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                                CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
+                                if(userTemp.getLicensePlate().equals(car.getText().toString())){
+                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic(), desc.getText().toString());
+                                    database.child("repairJobs").child(repairTemp.getRepairNumber()).setValue(repairTemp);
+                                    finish();
+                                    break;
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
+            }
+        });
+
+        //Cancela la operacion
+        AppCompatButton cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    /**
+     * Carga los datos en el adaptador
+     * @param carsInShop lista de matriculas
+     */
+    private void loadCarsInShop(ArrayList<String> carsInShop, ArrayAdapter<String> adapter) {
+        database.child("carInShop").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(carsInShop.size()>0){
+                    carsInShop.removeAll(carsInShop);
+                }
+
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    CarInShop carTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
+                    carsInShop.add(carTemp.getLicensePlate());
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("Info", "Fin de lectura");
+            }
+        });
+    }
+
+    private void generateRepairNumber() {
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,71 +146,6 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        TextView repairNumberTittle = findViewById(R.id.repairNumberTittle);
-        repairNumberTittle.setText("Reparacion Nº: " + repairNumber);
-        AppCompatButton confirm = findViewById(R.id.confirm);
-        AutoCompleteTextView car = findViewById(R.id.carSelectorTextField);
-        TextInputEditText date = findViewById(R.id.date_TextEdit);
-        TextInputEditText desc = findViewById(R.id.description);
-        final String[] chiefMechanic = {""};
-
-        ArrayList<String> carsInShop = new ArrayList<String>();
-        database.child("carInShop").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(carsInShop.size()>0){
-                    carsInShop.removeAll(carsInShop);
-                }
-
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    CarInShop carTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
-                    carsInShop.add(carTemp.getLicensePlate());
-                }
-                ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_NewRepairJob.this, android.R.layout.simple_spinner_dropdown_item, carsInShop);
-                car.setAdapter(licensePlate);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("Info", "Fin de lectura");
-            }
-        });
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!car.getText().toString().isEmpty() && !date.getText().toString().isEmpty() && !desc.getText().toString().isEmpty()){
-                    database.child("carInShop").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                                CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
-                                if(userTemp.getLicensePlate().equals(car.getText().toString())){
-                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic(), desc.getText().toString());
-                                    database.child("repairJobs").child(repairTemp.getRepairNumber()).setValue(repairTemp);
-                                    finish();
-                                    break;
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
-                }
-            }
-        });
-        AppCompatButton cancel = findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
             }
         });
     }

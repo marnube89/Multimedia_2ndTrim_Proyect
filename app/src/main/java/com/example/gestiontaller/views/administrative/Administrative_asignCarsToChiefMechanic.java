@@ -47,51 +47,21 @@ public class Administrative_asignCarsToChiefMechanic extends AppCompatActivity {
 
         AutoCompleteTextView chiefMechanic = findViewById(R.id.chiefMechanicTextField);
         ArrayList<String> chiefMechanics = new ArrayList<String>();
-        database.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(chiefMechanics.size()>0){
-                    chiefMechanics.removeAll(chiefMechanics);
-                }
+        ArrayAdapter<String> chiefName = new ArrayAdapter<String>(Administrative_asignCarsToChiefMechanic.this, android.R.layout.simple_spinner_dropdown_item, chiefMechanics);
+        chiefMechanic.setAdapter(chiefName);
 
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    User userTemp = new User((HashMap<String, Object>) postSnapshot.getValue());
-                    if(userTemp.getJobRol()==3){
-                        chiefMechanics.add(userTemp.getFullName());
-                    }
-
-                }
-                ArrayAdapter<String> chiefName = new ArrayAdapter<String>(Administrative_asignCarsToChiefMechanic.this, android.R.layout.simple_spinner_dropdown_item, chiefMechanics);
-                chiefMechanic.setAdapter(chiefName);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("Info", "Fin de lectura");
-            }
-        });
+        //Carga todos los mecanicos jefe disponibles
+        loadChiefMehanics(chiefMechanics, chiefName);
 
         AutoCompleteTextView car = findViewById(R.id.carSelectorTextField);
         ArrayList<String> carsInShop = new ArrayList<String>();
-        database.child("carInShop").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(carsInShop.size()>0){
-                    carsInShop.removeAll(carsInShop);
-                }
+        ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_asignCarsToChiefMechanic.this, android.R.layout.simple_spinner_dropdown_item, carsInShop);
+        car.setAdapter(licensePlate);
 
-                for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                    CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
-                    carsInShop.add(userTemp.getLicensePlate());
-                }
-                ArrayAdapter<String> licensePlate = new ArrayAdapter<String>(Administrative_asignCarsToChiefMechanic.this, android.R.layout.simple_spinner_dropdown_item, carsInShop);
-                car.setAdapter(licensePlate);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("Info", "Fin de lectura");
-            }
-        });
+        //Carga todos los coches que hay en el taller ahora mismo
+        loadCarsInShop(carsInShop, licensePlate);
 
+        //Confirma y guarda los datos en la base de datos
         AppCompatButton confirm = findViewById(R.id.confirmButton);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +85,61 @@ public class Administrative_asignCarsToChiefMechanic extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+    }
+
+    /**
+     * Carga y actualiza el adaptador de coches disponibles
+     * @param carsInShop lista de coches
+     * @param licensePlate adaptador a actualizar
+     */
+    private void loadCarsInShop(ArrayList<String> carsInShop, ArrayAdapter<String> licensePlate) {
+        database.child("carInShop").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(carsInShop.size()>0){
+                    carsInShop.removeAll(carsInShop);
+                }
+
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
+                    carsInShop.add(userTemp.getLicensePlate());
+                }
+                licensePlate.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("Info", "Fin de lectura");
+            }
+        });
+    }
+
+    /**
+     * Carga y actualiza el adaptador con los nombres de los mecanicos jefe
+     * @param chiefMechanics lista de nombres
+     * @param chiefName adaptador a actualizar
+     */
+    private void loadChiefMehanics(ArrayList<String> chiefMechanics, ArrayAdapter<String> chiefName) {
+        database.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(chiefMechanics.size()>0){
+                    chiefMechanics.removeAll(chiefMechanics);
+                }
+
+                for(DataSnapshot postSnapshot: snapshot.getChildren()){
+                    User userTemp = new User((HashMap<String, Object>) postSnapshot.getValue());
+                    if(userTemp.getJobRol()==3){
+                        chiefMechanics.add(userTemp.getFullName());
+                    }
+
+                }
+                chiefName.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("Info", "Fin de lectura");
             }
         });
     }

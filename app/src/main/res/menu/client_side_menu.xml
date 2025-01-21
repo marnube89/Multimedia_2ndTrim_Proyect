@@ -8,15 +8,15 @@
             <item
                 android:id="@+id/profile_info"
                 android:icon="@drawable/user"
-                android:title="profile_Info" />
+                android:title="@string/profile_info" />
             <item
                 android:id="@+id/contact"
                 android:icon="@drawable/phone_call"
-                android:title="contact" />
+                android:title="@string/contact_car_shop" />
         </menu>
     </item>
     <item
         android:id="@+id/signOut"
         android:icon="@drawable/logout"
-        android:title="signOut" />
+        android:title="@string/log_out" />
 </menu>

@@ -48,6 +48,46 @@ public class Administrative_newCarEntry extends AppCompatActivity {
 
         AutoCompleteTextView clientTextField = findViewById(R.id.clientTextField);
         ArrayList<String> clients = new ArrayList<String>();
+        ArrayAdapter<String> clientName = new ArrayAdapter<String>(Administrative_newCarEntry.this, android.R.layout.simple_spinner_dropdown_item, clients);
+        clientTextField.setAdapter(clientName);
+
+        //Carga de clientes
+        loadClients(clients, clientName);
+
+        AppCompatButton confirm = findViewById(R.id.Confirm);
+        TextInputEditText car = findViewById(R.id.carTextField);
+        TextInputEditText date = findViewById(R.id.dateTextField);
+
+        //Se guardan los datos en la base de datos
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!(car.getText().toString().isEmpty()) && !(date.getText().toString().isEmpty()) && !(clientTextField.getText().toString().isEmpty())){
+                    CarInShop carTemp = new CarInShop(car.getText().toString(), "", date.getText().toString(), clientTextField.getText().toString());
+                    database.child("carInShop").child(carTemp.getLicensePlate()).setValue(carTemp);
+                    finish();
+                }else{
+                    //validacion de campos vacios
+                }
+            }
+        });
+
+        //Cancelar operacion
+        AppCompatButton cancel = findViewById(R.id.Cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    /**
+     * Carga una lista con los clientes registrados y actualiza su adaptador
+     * @param clients lista de nombres de clientes
+     * @param adapter adaptador a actualizar
+     */
+    private void loadClients(ArrayList<String> clients, ArrayAdapter<String> adapter) {
         database.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -62,35 +102,11 @@ public class Administrative_newCarEntry extends AppCompatActivity {
                     }
 
                 }
-                ArrayAdapter<String> clientName = new ArrayAdapter<String>(Administrative_newCarEntry.this, android.R.layout.simple_spinner_dropdown_item, clients);
-                clientTextField.setAdapter(clientName);
+                adapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.i("Info", "Fin de lectura");
-            }
-        });
-
-        AppCompatButton confirm = findViewById(R.id.Confirm);
-        TextInputEditText car = findViewById(R.id.carTextField);
-        TextInputEditText date = findViewById(R.id.dateTextField);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!(car.getText().toString().isEmpty()) && !(date.getText().toString().isEmpty()) && !(clientTextField.getText().toString().isEmpty())){
-                    CarInShop carTemp = new CarInShop(car.getText().toString(), "", date.getText().toString(), clientTextField.getText().toString());
-                    database.child("carInShop").child(carTemp.getLicensePlate()).setValue(carTemp);
-                    finish();
-                }else{
-                    //no me da tiempo
-                }
-            }
-        });
-        AppCompatButton cancel = findViewById(R.id.Cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
             }
         });
     }

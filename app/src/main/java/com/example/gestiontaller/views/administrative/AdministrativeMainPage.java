@@ -65,6 +65,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
 
         AppCompatButton newEntry, asignCars, newRepair,asignMechanics, notifyClient, checkStock, orderPieces;
 
+        //Nueva entrada de coche
         newEntry = findViewById(R.id.newEntryBt);
         newEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
             }
         });
 
+        //Asignar coches a mecanico jefe
         asignCars = findViewById(R.id.asignCarsBt);
         asignCars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
             }
         });
 
+        //Crear nueva reparacion
         newRepair = findViewById(R.id.newRepairBt);
         newRepair.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +95,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
             }
         });
 
+        //Asignar mecanicos a reparaciones
         asignMechanics = findViewById(R.id.asignMechanicsBt);
         asignMechanics.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +105,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
             }
         });
 
+        //Notificar al cliente (Via email)
         notifyClient = findViewById(R.id.notifyClientBt);
         notifyClient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +137,8 @@ public class AdministrativeMainPage extends AppCompatActivity {
                     }
                 });
 
+                //Dentro del dialogo, se mostrara un spinner con los clientes disponibles,
+                // despues el intent usara los datos de ese cliente para rellenar un correo
                 Spinner clientSelector = new Spinner(AdministrativeMainPage.this);
                 clientSelector.setAdapter(namesAdapter);
                 new MaterialAlertDialogBuilder(AdministrativeMainPage.this)
@@ -156,6 +163,8 @@ public class AdministrativeMainPage extends AppCompatActivity {
                         .show();
             }
         });
+
+        //Comprobar stock
         checkStock = findViewById(R.id.checkStockBt);
         checkStock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +173,8 @@ public class AdministrativeMainPage extends AppCompatActivity {
                 startActivity(gotoCheckStock);
             }
         });
+
+        //Pedir piezas, la actividad de pedir piezas tambien sera usada por los mecanicos que necisten pedir piezas para una tarea
         orderPieces = findViewById(R.id.newPiecesOrderBt);
         orderPieces.setOnClickListener(new View.OnClickListener() {
             @Override
