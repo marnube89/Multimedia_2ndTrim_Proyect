@@ -66,7 +66,6 @@ public class Administrative_OrderParts extends AppCompatActivity {
                 for(DataSnapshot postShot : snapshot.getChildren()){
                     if(postShot!=null){
                         retailerTemp.add((String) postShot.child("name").getValue());
-                        Log.i("algo", Integer.toString(retailerTemp.size()));
 
                     }
                 }
@@ -81,7 +80,7 @@ public class Administrative_OrderParts extends AppCompatActivity {
         });
 
 
-        //Guarda y actualiza las piezas disponibles por el proveedor seleccionado
+        //Selecciona y actualiza los datos del proveedor
         HashMap<String, CarPart> carPartArrayList = new HashMap<String, CarPart>();
         supplier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -106,7 +105,6 @@ public class Administrative_OrderParts extends AppCompatActivity {
                         ArrayAdapter<String> adapterParts = new ArrayAdapter<String>(Administrative_OrderParts.this, android.R.layout.simple_spinner_dropdown_item, carPartNames);
                         piece.setAdapter(adapterParts);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

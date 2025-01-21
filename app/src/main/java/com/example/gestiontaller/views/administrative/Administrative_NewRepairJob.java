@@ -1,10 +1,12 @@
 package com.example.gestiontaller.views.administrative;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,18 +22,23 @@ import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.RepairJob;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Administrative_NewRepairJob extends AppCompatActivity {
     private DatabaseReference database;
-    private int repairNumber = 0;
+    private final int[] repairNumber = new int[1];
+    private final Calendar myCalendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         database = FirebaseDatabase.getInstance().getReference();
@@ -50,12 +57,32 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
         //Genera un nuevo numero de reparacion
         generateRepairNumber();
 
-        TextView repairNumberTittle = findViewById(R.id.repairNumberTittle);
-        repairNumberTittle.setText("Reparacion Nº: " + repairNumber);
+
         AppCompatButton confirm = findViewById(R.id.confirm);
         AutoCompleteTextView car = findViewById(R.id.carSelectorTextField);
+
         TextInputEditText date = findViewById(R.id.date_TextEdit);
+        TextInputLayout dateLayout = findViewById(R.id.startDate_textField);
+
+        DatePickerDialog.OnDateSetListener datePicker =new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                date.setText(new SimpleDateFormat("dd/MM/yyyy").format(myCalendar.getTime()));
+            }
+        };
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(Administrative_NewRepairJob.this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         TextInputEditText desc = findViewById(R.id.description);
+        TextInputLayout descLayout = findViewById(R.id.description_textField);
+
         final String[] chiefMechanic = {""};
 
         ArrayList<String> carsInShop = new ArrayList<String>();
@@ -76,7 +103,7 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
                             for(DataSnapshot postSnapshot: snapshot.getChildren()){
                                 CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
                                 if(userTemp.getLicensePlate().equals(car.getText().toString())){
-                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic(), desc.getText().toString());
+                                    RepairJob repairTemp = new RepairJob(Integer.toString(repairNumber[0]), userTemp.getLicensePlate(), date.getText().toString(), userTemp.getChiefMechanic(), desc.getText().toString());
                                     database.child("repairJobs").child(repairTemp.getRepairNumber()).setValue(repairTemp);
                                     finish();
                                     break;
@@ -87,6 +114,17 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
+                }else{
+                    if(desc.getText().toString().isEmpty()){
+                        descLayout.setError("Campo Vacio");
+                    }else{
+                        descLayout.setErrorEnabled(false);
+                    }
+                    if(date.getText().toString().isEmpty()){
+                        dateLayout.setError("Campo Vacio");
+                    }else{
+                        dateLayout.setErrorEnabled(false);
+                    }
                 }
             }
         });
@@ -136,11 +174,13 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
                     contador++;
                 }
                 if(contador>0){
-                    repairNumber = contador+1;
-                }else if(contador<=0){
-                    repairNumber = 1;
+                    repairNumber[0] = contador+1;
+                }else {
+                    repairNumber[0] = 1;
                 }
-                Log.i("numeroRepair", Integer.toString(repairNumber));
+
+                TextView repairNumberTittle = findViewById(R.id.repairNumberTittle);
+                repairNumberTittle.setText("Reparacion Nº: " + repairNumber[0]);
             }
 
             @Override
@@ -149,4 +189,5 @@ public class Administrative_NewRepairJob extends AppCompatActivity {
             }
         });
     }
+
 }

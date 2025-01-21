@@ -1,10 +1,12 @@
 package com.example.gestiontaller.views.chief_mechanic;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,16 +20,20 @@ import com.example.gestiontaller.R;
 import com.example.gestiontaller.data_classes.RepairJob;
 import com.example.gestiontaller.data_classes.RepairTask;
 import com.example.gestiontaller.graphics.CustomGraphics;
+import com.example.gestiontaller.views.administrative.Administrative_NewRepairJob;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class ChiefMechanic_CreateTask extends AppCompatActivity {
@@ -35,6 +41,7 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
     private int taskNumber;
     private ArrayList<String> repairNumbers = new ArrayList<String>();
     private final RepairJob[] repairData = new RepairJob[1];
+    private final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,26 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
 
         //Campos a reyenar
         TextInputEditText date = findViewById(R.id.dateTextField);
+        TextInputLayout dateLayout = findViewById(R.id.startDate_textField);
+
+        DatePickerDialog.OnDateSetListener datePicker =new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                date.setText(new SimpleDateFormat("dd/MM/yyyy").format(myCalendar.getTime()));
+            }
+        };
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(ChiefMechanic_CreateTask.this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         TextInputEditText desc = findViewById(R.id.description);
+        TextInputLayout descLayout = findViewById(R.id.description_textField);
 
         AppCompatButton confirm = findViewById(R.id.confirmBtt);
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +106,16 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
                     database.child("tasks").child(Integer.toString(taskNumber)).setValue(newTask);
                     finish();
                 }else{
-                    //validacion de campos vacios
+                    if(desc.getText().toString().isEmpty()){
+                        descLayout.setError("Campo Vacio");
+                    }else{
+                        descLayout.setErrorEnabled(false);
+                    }
+                    if(date.getText().toString().isEmpty()){
+                        dateLayout.setError("Campo Vacio");
+                    }else{
+                        dateLayout.setErrorEnabled(false);
+                    }
                 }
             }
         });

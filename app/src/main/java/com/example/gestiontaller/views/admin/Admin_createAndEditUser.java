@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,9 +55,13 @@ private boolean isModding = false;
 
 
         TextInputEditText fullname = findViewById(R.id.fullName_TextField);
+        TextInputLayout fullNameLayout = findViewById(R.id.fullName_textField);
         TextInputEditText mail = findViewById(R.id.mail_TextField);
+        TextInputLayout mailLayout = findViewById(R.id.mail_textField);
         TextInputEditText tlf = findViewById(R.id.tlf_TextField);
+        TextInputLayout tlfLayout = findViewById(R.id.tlf_textField);
         TextInputEditText pass = findViewById(R.id.pass_TextField);
+        TextInputLayout passLayout = findViewById(R.id.pass_textField);
         AutoCompleteTextView rol = findViewById(R.id.jobRol_Text);
 
 
@@ -112,6 +117,27 @@ private boolean isModding = false;
 
                 }else{
                     //Validacion de datos para campos vacios
+                    if(fullname.getText().toString().isEmpty()){
+                        fullNameLayout.setError("Campo Vacio");
+                    }else{
+                        fullNameLayout.setErrorEnabled(false);
+                    }
+                    if(mail.getText().toString().isEmpty()){
+                        mailLayout.setError("Campo Vacio");
+                    }else{
+                        mailLayout.setErrorEnabled(false);
+                    }
+                    if(pass.getText().toString().isEmpty()){
+                        passLayout.setError("Campo Vacio");
+                    }else{
+                        passLayout.setErrorEnabled(false);
+                    }
+                    if(tlf.getText().toString().isEmpty()){
+                        tlfLayout.setError("Campo Vacio");
+                    }else{
+                        tlfLayout.setErrorEnabled(false);
+                    }
+
                 }
             }
         });

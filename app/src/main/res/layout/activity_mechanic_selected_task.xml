@@ -125,7 +125,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="0"
                     android:background="@drawable/rounded_corner_container"
-                    android:backgroundTint="@color/material_dynamic_neutral70"
+                    android:backgroundTint="@color/material_dynamic_neutral90"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -136,7 +136,11 @@
                         android:layout_weight="1"
                         android:background="@drawable/round_button_filled"
                         android:backgroundTint="@color/softBlue"
-                        android:text="@string/order_new_parts" />
+                        android:text="@string/order_new_parts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/editDesc"
@@ -144,9 +148,13 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:text="@string/editDesc"
                         android:background="@drawable/round_button_filled"
-                        android:backgroundTint="@color/softBlue" />
+                        android:backgroundTint="@color/softBlue"
+                        android:text="@string/editDesc"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -225,7 +233,12 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_button_filled"
-                    android:text="comentar" />
+                    android:backgroundTint="@color/softGreen"
+                    android:text="Comentar"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

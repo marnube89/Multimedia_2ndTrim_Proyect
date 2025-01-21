@@ -14,6 +14,7 @@ import com.example.gestiontaller.R;
 import com.example.gestiontaller.data_classes.User;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,8 +40,10 @@ public class Client_Profile extends AppCompatActivity {
         CustomGraphics.hideUserControls(this);
 
         TextInputEditText name = findViewById(R.id.nameContent);
+        TextInputLayout nameLayout = findViewById(R.id.name_textField);
         name.setText(current.getFullName());
         TextInputEditText tlf = findViewById(R.id.phoneContent);
+        TextInputLayout tlfLayout = findViewById(R.id.tlf_textField);
         tlf.setText(Long.toString(current.getTlfNumber()));
         TextInputEditText mail = findViewById(R.id.mailContent);
         mail.setText(current.getMail());
@@ -56,6 +59,17 @@ public class Client_Profile extends AppCompatActivity {
                     current.setTlfNumber(Long.parseLong(tlf.getText().toString()));
 
                     database.child("users").child(current.getUid()).setValue(current);
+                }else{
+                    if(name.getText().toString().isEmpty()){
+                        nameLayout.setError("Campo Vacio");
+                    }else{
+                        nameLayout.setErrorEnabled(false);
+                    }
+                    if(tlf.getText().toString().isEmpty()){
+                        tlfLayout.setError("Campo Vacio");
+                    }else{
+                        tlfLayout.setErrorEnabled(false);
+                    }
                 }
             }
         });
