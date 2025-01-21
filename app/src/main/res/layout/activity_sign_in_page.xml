@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/transparent_white"
                 android:backgroundTintMode="src_over"
-                android:text="chiefmechanic@carshop.com" />
+                android:text="marnube89@gmail.com" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +66,7 @@
                 android:backgroundTint="@color/transparent_white"
                 android:backgroundTintMode="src_over"
                 android:inputType="textPassword"
-                android:text="chief123" />
+                android:text="12437015.hH" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

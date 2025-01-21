@@ -13,6 +13,7 @@ public class RepairTask implements Serializable {
     private String finishDate; //To later be change to the correct format
     private String description;
     private String repairNumber;
+    private String comment;
 
     public RepairTask() {
     }
@@ -37,6 +38,15 @@ public class RepairTask implements Serializable {
             this.finishDate = (String) map.get("finishDate");
         }
         this.repairNumber = (String) map.get("repairNumber");
+        this.comment = (String) map.get("comment");
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getRepairNumber() {

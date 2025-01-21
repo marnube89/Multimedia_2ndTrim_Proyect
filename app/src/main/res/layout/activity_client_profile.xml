@@ -46,32 +46,13 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="@color/transparent_white"
                     android:backgroundTintMode="src_over"
-                    android:editable="false" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/licensePlate_textField"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/transparent_white"
-                android:hint="@string/mail"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/transparent_white"
-                    android:backgroundTintMode="src_over"
-                    android:editable="false" />
+                    android:editable="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,12 +67,36 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:backgroundTint="@color/transparent_white"
                     android:backgroundTintMode="src_over"
-                    android:editable="false" />
+                    android:editable="true"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mail_TextField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/transparent_white"
+                android:hint="@string/mail"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mailContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/transparent_white"
+                    android:backgroundTintMode="src_over"
+                    android:editable="false"
+                    android:enabled="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,11 +110,13 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/transparent_white"
                     android:backgroundTintMode="src_over"
                     android:editable="false"
+                    android:enabled="false"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +142,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/saveBt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"

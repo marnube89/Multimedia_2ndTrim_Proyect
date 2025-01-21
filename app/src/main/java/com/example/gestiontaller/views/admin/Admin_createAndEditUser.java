@@ -29,16 +29,17 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Admin_createAndEditUser extends AppCompatActivity {
 private DatabaseReference database;
 private FirebaseAuth auth;
-private FirebaseUser admin;
+
+//Variable que le indica al programa si se esta creando o editando un usuario
 private boolean isModding = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         database = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
-        admin = auth.getCurrentUser();
         Intent temp = getIntent();
         isModding = temp.getBooleanExtra("isModding", false);
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_create_and_edit_user);
@@ -59,7 +60,7 @@ private boolean isModding = false;
         AutoCompleteTextView rol = findViewById(R.id.jobRol_Text);
 
 
-
+        //Mostrara los datos del usuario seleccionado si se esta editando al mismo
         if(isModding){
             User dataRetrieved = (User) temp.getSerializableExtra("user");
             fullname.setText(dataRetrieved.getFullName());
@@ -80,6 +81,8 @@ private boolean isModding = false;
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Se asigna un valor numerico para identificar el rol de este empleado (2-administrativo por defecto)
                 Integer rolNumber = 2;
                 if(rol.getText().toString().equals("Mecanico")){
                     rolNumber = 4;
@@ -87,32 +90,28 @@ private boolean isModding = false;
                     rolNumber = 3;
                 }
 
+                //Comprobacion de campos vacios
                 if(!(fullname.getText().toString().isEmpty()) && !(mail.getText().toString().isEmpty()) && !(tlf.getText().toString().isEmpty()) && !(pass.getText().toString().isEmpty()) && !(rol.getText().toString().isEmpty())){
 
                     if(!isModding){
-                        User userTemp = new User(fullname.getText().toString(), mail.getText().toString(), Long.parseLong(tlf.getText().toString()), rolNumber, pass.getText().toString());
-                        auth.createUserWithEmailAndPassword(userTemp.getMail(), userTemp.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    userTemp.setUid(auth.getCurrentUser().getUid());
-                                    database.child("users").child(userTemp.getUid()).setValue(userTemp);
-                                    //auth.updateCurrentUser(admin);
-                                }else{
-                                    Snackbar.make(findViewById(R.id.main), "mal mal", Snackbar.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
 
+                        //Recoge los datos de los campos
+                        User userTemp = new User(fullname.getText().toString(), mail.getText().toString(), Long.parseLong(tlf.getText().toString()), rolNumber, pass.getText().toString());
+                        createUser(userTemp);
                     }else{
 
+                        //Se crea un usuario con los nuevos datos
                         User moddedUser = new User(fullname.getText().toString(), mail.getText().toString(), Long.parseLong(tlf.getText().toString()), rolNumber, pass.getText().toString());
+
+                        //Se recupera el usuario seleccionado anteriormente
                         User userTemp = (User) temp.getSerializableExtra("user");
+
+                        //Se actualizan los datos del usuario editado
                         database.child("users").child(userTemp.getUid()).setValue(moddedUser);
                     }
 
                 }else{
-                    //no tengo tiempo
+                    //Validacion de datos para campos vacios
                 }
             }
         });
@@ -126,6 +125,26 @@ private boolean isModding = false;
 
 
 
+    }
+
+    /**
+     * Se crean credenciales de usuario a partir del usuario pasado y se almacenan sus datos en la base de datos
+     * @param userTemp objeto usuario a agregar
+     */
+    private void createUser(User userTemp){
+        //Si se consigue completar la creacion de credenciales, se almacenara el usuario
+        auth.createUserWithEmailAndPassword(userTemp.getMail(), userTemp.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    userTemp.setUid(auth.getCurrentUser().getUid());
+                    //Se añaden los datos del usuario a la base de datos
+                    database.child("users").child(userTemp.getUid()).setValue(userTemp);
+                }else{
+                    Snackbar.make(findViewById(R.id.main), "Usuario ya creado o parametros mal formulados", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }

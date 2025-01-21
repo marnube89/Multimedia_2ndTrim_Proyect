@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.graphics.CustomGraphics;
+import com.example.gestiontaller.local_database.UserDbHelper;
 import com.example.gestiontaller.views.client.ClientMainPage;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.views.admin.AdminMainPage;
@@ -37,6 +38,7 @@ import java.util.HashMap;
 public class SignInPage extends AppCompatActivity {
     private FirebaseAuth database;
     private DatabaseReference realTimeDatabase;
+    private UserDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class SignInPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        dbHelper = new UserDbHelper(this);
 
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
@@ -73,6 +77,7 @@ public class SignInPage extends AppCompatActivity {
         TextInputEditText pass = findViewById(R.id.pass_textEdit);
         TextInputLayout passLayout = findViewById(R.id.pass_textField);
         TextInputLayout mailLayout = findViewById(R.id.mail_textField);
+
         signIn_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,53 +89,11 @@ public class SignInPage extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser user = database.getCurrentUser();
                                 String uid = user.getUid();
-                                //Despues tras recoger el uid del usuario que acaba de iniciar sesion, se pueden extraer los datos del usuario como hashmap
-                                realTimeDatabase.child("users").child(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                       if(task.isSuccessful()){
-                                           User userTemp = new User((HashMap) task.getResult().getValue());
-                                           if(userTemp.isActiveAccount()){
-                                               //Mediante esta comprobacion, que queda a modificacion, se puede comprobar el tipo de usuario que esta intentando entrar a la app para mostrarle el correspondiente menu
-                                               switch(userTemp.getJobRol()){
-                                                   case 0:
-                                                       Intent gotoCliente = new Intent(SignInPage.this, ClientMainPage.class);
-                                                       gotoCliente.putExtra("user",userTemp);
-                                                       startActivity(gotoCliente);
-                                                       break;
-                                                   case 1:
-                                                       Intent gotoAdmin = new Intent(SignInPage.this, AdminMainPage.class);
-                                                       gotoAdmin.putExtra("user",userTemp);
-                                                       startActivity(gotoAdmin);
-                                                       break;
-                                                   case 2:
-                                                       Intent gotoAdministrative = new Intent(SignInPage.this, AdministrativeMainPage.class);
-                                                       gotoAdministrative.putExtra("user",userTemp);
-                                                       startActivity(gotoAdministrative);
-                                                       break;
-                                                   case 3:
-                                                       Intent gotoChiefMechanic = new Intent(SignInPage.this, MechanicChiefMainPage.class);
-                                                       gotoChiefMechanic.putExtra("user",userTemp);
-                                                       startActivity(gotoChiefMechanic);
-                                                       break;
-                                                   case 4:
-                                                       Intent gotoMechanic = new Intent(SignInPage.this, MechanicMainPage.class);
-                                                       gotoMechanic.putExtra("user",userTemp);
-                                                       startActivity(gotoMechanic);
-                                                       break;
-                                               }
-                                           }else{
-                                               Snackbar.make(findViewById(R.id.main), "Cuenta inactiva", Snackbar.LENGTH_SHORT).show();
-                                           }
 
-                                       }
-                                    }
-
-                                });
-
-                                //Intent goToAdmin = new Intent(SignInPage.this, AdminMainPage.class);
-                                //startActivity(goToAdmin);
+                                //Tras recoger el uid del usuario que acaba de iniciar sesion, se pueden extraer los datos del usuario como hashmap
+                                userDataFetch(uid);
                             }else{
+
                                 //Si no encuentra un usuario valido mostrara el siguiente mensaje de error
                                 mailLayout.setErrorEnabled(false);
                                 passLayout.setError("Contraseña o usuario incorrectos");
@@ -154,5 +117,68 @@ public class SignInPage extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Recogera los datos del usuario con la uid pasada y despues llamara a userSelector()
+     * @param uid identificador del usuario
+     */
+    private void userDataFetch(String uid){
+        realTimeDatabase.child("users").child(uid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    User userTemp = new User((HashMap) task.getResult().getValue());
+
+                    //Comprueba si la cuenta esta inavilitada o no
+                    if(userTemp.isActiveAccount()){
+                        //Guarda al usuario en la base de datos local
+                        dbHelper.saveCurrentUser(userTemp);
+
+                        //Te llevara a la main page correspondiente
+                        userSelector(userTemp);
+                    }else{
+                        Snackbar.make(findViewById(R.id.main), "Cuenta inactiva", Snackbar.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+        });
+    }
+
+    /**
+     * Llevara al usuario a su correspondiente menu principal
+     * @param userTemp datos del usuario, estos se pasaran a cada menu para sus comprovaciones de datos
+     */
+    private void userSelector(User userTemp){
+        //Mediante esta comprobacion, que queda a modificacion, se puede comprobar el tipo de usuario que esta intentando entrar a la app para mostrarle el correspondiente menu
+        switch(userTemp.getJobRol()){
+            case 0:
+                Intent gotoCliente = new Intent(SignInPage.this, ClientMainPage.class);
+                gotoCliente.putExtra("user",userTemp);
+                startActivity(gotoCliente);
+                break;
+            case 1:
+                Intent gotoAdmin = new Intent(SignInPage.this, AdminMainPage.class);
+                gotoAdmin.putExtra("user",userTemp);
+                startActivity(gotoAdmin);
+                break;
+            case 2:
+                Intent gotoAdministrative = new Intent(SignInPage.this, AdministrativeMainPage.class);
+                gotoAdministrative.putExtra("user",userTemp);
+                startActivity(gotoAdministrative);
+                break;
+            case 3:
+                Intent gotoChiefMechanic = new Intent(SignInPage.this, MechanicChiefMainPage.class);
+                gotoChiefMechanic.putExtra("user",userTemp);
+                startActivity(gotoChiefMechanic);
+                break;
+            case 4:
+                Intent gotoMechanic = new Intent(SignInPage.this, MechanicMainPage.class);
+                gotoMechanic.putExtra("user",userTemp);
+                startActivity(gotoMechanic);
+                break;
+        }
     }
 }

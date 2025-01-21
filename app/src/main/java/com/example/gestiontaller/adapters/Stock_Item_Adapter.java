@@ -19,11 +19,23 @@ import java.util.ArrayList;
 public class Stock_Item_Adapter extends ArrayAdapter<CarPart> {
     private ArrayList<CarPart> data;
 
+    /**
+     * Constructor
+     * @param context contexto de donde se crea el adaptador
+     * @param data ArrayList con los datos a mostrar
+     */
     public Stock_Item_Adapter(@NonNull Context context, ArrayList<CarPart> data) {
         super(context, 0, data);
         this.data = data;
     }
 
+    /**
+     * Muestra los datos colocados en un layout personalizado
+     * @param position es la posicion del elemento
+     * @param convertView
+     * @param parent es la vista padre
+     * @return devuelve una vista, la cual se colocara en cada elemento del ListView
+     */
     @SuppressLint("ResourceAsColor")
     @NonNull
     @Override

@@ -75,6 +75,8 @@ public class SingUpPage extends AppCompatActivity {
             public void onClick(View view) {
                 if(fullName.getText().toString().isEmpty() || mail.getText().toString().isEmpty() || pass.getText().toString().isEmpty() || passConfirm.getText().toString().isEmpty() || tlf.getText().toString().isEmpty()){
 
+                    //Todo esto son comprovaciones de campos vacios y sus mensajes de error
+
                     if(fullName.getText().toString().isEmpty()){
                         fullNameLayout.setError("Campo vacio");
                     }else{
@@ -107,35 +109,33 @@ public class SingUpPage extends AppCompatActivity {
 
                 }else{
                     if(pass.getText().toString().equals(passConfirm.getText().toString())){
+                        //Esta creacion de usuario solo creara clientes (jobRol 0)
+
                         //Registro
                         //* Este registro solo sera para los clientes, el admin sera quien se encargue de registrar y modificar a los empleados
                         User newUser = new User(fullName.getText().toString(), mail.getText().toString(), Long.parseLong(tlf.getText().toString()), 0, pass.getText().toString());
                         auth.createUserWithEmailAndPassword(newUser.getMail(), newUser.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                //Si se consigue crear un usuario con esos credenciales se almacenaran sus datos en la base de datos
                                 if(task.isSuccessful()){
                                     FirebaseUser currentNewUser = auth.getCurrentUser();
                                     newUser.setUid(currentNewUser.getUid());
                                     realTimeDatabase.child("users").child(newUser.getUid()).setValue(newUser);
+
+                                    //Llevara al usuario directamente a la mainPage de cliente
                                     Intent goTo_client = new Intent(SingUpPage.this, ClientMainPage.class);
                                     goTo_client.putExtra("user", newUser);
                                     startActivity(goTo_client);
                                 }else{
-                                    View content = findViewById(R.id.main);
-                                    Snackbar.make(content, "Mal mal", Snackbar.LENGTH_SHORT).show();
-
+                                    Snackbar.make(findViewById(R.id.main), "Creacion de usuario fallida", Snackbar.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
                     }else{
                         passConfirmLayout.setError("Las contraseñas no coinciden");
                     }
-
                 }
-                //Esta creacion de usuario solo creara clientes (jobRol 0)
-
-
             }
         });
     }

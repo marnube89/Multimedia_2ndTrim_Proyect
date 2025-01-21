@@ -9,9 +9,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestiontaller.R;
+import com.example.gestiontaller.data_classes.RepairJob;
 import com.example.gestiontaller.graphics.CustomGraphics;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class Client_RepairDetails extends AppCompatActivity {
+    private RepairJob selectedRepair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +29,19 @@ public class Client_RepairDetails extends AppCompatActivity {
 
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
+
+        selectedRepair = (RepairJob) getIntent().getSerializableExtra("repair");
+
+        TextInputEditText date = findViewById(R.id.dateContent);
+        date.setText(selectedRepair.getStartDate());
+
+        TextInputEditText licensePlate = findViewById(R.id.licensePlateContent);
+        licensePlate.setText(selectedRepair.getCar());
+
+        TextInputEditText repairDesc = findViewById(R.id.descContent);
+        repairDesc.setText(selectedRepair.getDescription());
+
+        TextInputEditText repairDiagnostic = findViewById(R.id.diagnosticContent);
+        repairDiagnostic.setText(selectedRepair.getDiagnostic());
     }
 }

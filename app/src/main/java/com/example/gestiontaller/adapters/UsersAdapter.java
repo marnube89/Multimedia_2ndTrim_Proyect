@@ -20,17 +20,37 @@ import java.util.ArrayList;
 public class UsersAdapter extends ArrayAdapter<User> {
     private ArrayList<User> data;
     private boolean showCheck;
+
+    /**
+     * Constructor
+     * @param context contexto de donde se crea el adaptador
+     * @param data ArrayList con los datos a mostrar
+     */
     public UsersAdapter(Context context, ArrayList<User> data) {
         super(context, R.layout.admin_user_list_item, data);
         this.data = data;
         showCheck = true;
     }
+
+    /**
+     * Constructor
+     * @param context contexto de donde se crea el adaptador
+     * @param data ArrayList con los datos a mostrar
+     * @param showCheck dependiendo del valor de este booleano, se mostraran los checkbox o no
+     */
     public UsersAdapter(Context context, ArrayList<User> data, boolean showCheck) {
         super(context, R.layout.admin_user_list_item, data);
         this.data = data;
         this.showCheck = showCheck;
     }
 
+    /**
+     * Muestra los datos colocados en un layout personalizado
+     * @param position es la posicion del elemento
+     * @param convertView
+     * @param parent es la vista padre
+     * @return devuelve una vista, la cual se colocara en cada elemento del ListView
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater mostrado = LayoutInflater.from(getContext());
