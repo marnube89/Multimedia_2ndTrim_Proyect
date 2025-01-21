@@ -161,6 +161,21 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/respond_diagnostic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="30dp"
+                android:background="@drawable/round_button_filled"
+                android:backgroundTint="@color/softGreen"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/respond_diagnostic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

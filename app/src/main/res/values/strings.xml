@@ -63,4 +63,5 @@
     <string name="editDesc">Edit desc</string>
     <string name="task_comnt">Task comments</string>
     <string name="repair_diagnostic">Repair Diagnostic</string>
+    <string name="respond_diagnostic">Respond diagnostic</string>
 </resources>

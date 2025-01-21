@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
+import com.example.gestiontaller.graphics.ExitDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdministrativeMainPage extends AppCompatActivity {
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,25 @@ public class AdministrativeMainPage extends AppCompatActivity {
             return insets;
         });
 
+        currentUser = (User) getIntent().getSerializableExtra("user");
+
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        TextView greeting = findViewById(R.id.greetings);
+        greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
+
+        ImageButton exit = findViewById(R.id.exitBtn);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExitDialog.exitDialog(currentUser, AdministrativeMainPage.this);
+            }
+        });
+
+
         AppCompatButton newEntry, asignCars, newRepair,asignMechanics, notifyClient, checkStock, orderPieces;
+
         newEntry = findViewById(R.id.newEntryBt);
         newEntry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +73,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
                 startActivity(gotoNewEntry);
             }
         });
+
         asignCars = findViewById(R.id.asignCarsBt);
         asignCars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +82,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
                 startActivity(gotoAsignCars);
             }
         });
+
         newRepair = findViewById(R.id.newRepairBt);
         newRepair.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +91,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
                 startActivity(gotoNewRepair);
             }
         });
+
         asignMechanics = findViewById(R.id.asignMechanicsBt);
         asignMechanics.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +100,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
                 startActivity(gotoAsignMechanics);
             }
         });
+
         notifyClient = findViewById(R.id.notifyClientBt);
         notifyClient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +131,7 @@ public class AdministrativeMainPage extends AppCompatActivity {
 
                     }
                 });
+
                 Spinner clientSelector = new Spinner(AdministrativeMainPage.this);
                 clientSelector.setAdapter(namesAdapter);
                 new MaterialAlertDialogBuilder(AdministrativeMainPage.this)
@@ -121,7 +145,6 @@ public class AdministrativeMainPage extends AppCompatActivity {
                                     if(u.getFullName().equals(clientSelector.getSelectedItem().toString())){
                                         Intent intent = new Intent(Intent.ACTION_SENDTO);
                                         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                                        //Direccion no va
                                         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{u.getMail()});
                                         intent.putExtra(Intent.EXTRA_SUBJECT, "Notificacion para: " + u.getFullName());
                                         startActivity(intent);
@@ -131,8 +154,6 @@ public class AdministrativeMainPage extends AppCompatActivity {
                             }
                         })
                         .show();
-
-
             }
         });
         checkStock = findViewById(R.id.checkStockBt);

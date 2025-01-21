@@ -1,6 +1,8 @@
 package com.example.gestiontaller.views.client;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -9,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,6 +30,7 @@ import com.example.gestiontaller.data_classes.RepairJob;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
 import com.example.gestiontaller.local_database.UserDbHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -66,6 +70,9 @@ public class ClientMainPage extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        TextView greeting = findViewById(R.id.greetings);
+        greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
+
         ListView repairList = findViewById(R.id.repairList);
         adapter = new RepairListAdapter(this, repairs);
         repairList.setAdapter(adapter);
@@ -81,21 +88,49 @@ public class ClientMainPage extends AppCompatActivity {
         });
 
         NavigationView nav = findViewById(R.id.nav_view);
+
+        //Listener para los botones del menu lateral
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.profile_info){
+
+                    //Leva al usuario a la ventana con los datos de su perfil
                     Intent gotoProfileInfo = new Intent(ClientMainPage.this, Client_Profile.class);
                     gotoProfileInfo.putExtra("user", currentUser);
                     startActivity(gotoProfileInfo);
                 }
                 if(item.getItemId() == R.id.contact){
 
-                    //dialogo de seleccion de tipo de contacto
-                    //intent implicito de mail
-                    //intent implicito de telefono
+                    //Dialogo que le pedira al usuario elegir un metodo de contacto con el taller
+                    new MaterialAlertDialogBuilder(ClientMainPage.this)
+                            .setTitle("Contacto")
+                            .setMessage("Seleccione una forma de contacto")
+                            .setPositiveButton("Correo electronico", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //Manda al usuario a la aplicacion de correo para ponerse en contacto con un administrativo/el taller en general
+                                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                                    intent.setData(Uri.parse("mailto:"));
+                                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"administrative@carshop.com"});
+                                    intent.putExtra(Intent.EXTRA_SUBJECT, "Consulta respecto a reparaciones");
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Telefono", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    //Supuesto telefono del taller
+                                    String phone = "+34666777888";
+                                    Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                    startActivity(phoneIntent);
+                                }
+                            })
+                            .show();
                 }
                 if(item.getItemId() == R.id.signOut){
+
+                    //Cierre de sesion
                     dbHelper.deleteUser(currentUser);
                     finish();
                 }
@@ -115,6 +150,9 @@ public class ClientMainPage extends AppCompatActivity {
 
     }
 
+    /**
+     * Carga todos los coches que tiene este cliente
+     */
     private void loadAdapter(){
         database.child("carInShop").addValueEventListener(new ValueEventListener() {
             @Override
@@ -136,6 +174,10 @@ public class ClientMainPage extends AppCompatActivity {
         });
     }
 
+    /**
+     * Actualiza el adaptador de las reparaciones a mostrar al cliente
+     * @param cars listado de coches que tiene el cliente en el taller
+     */
     private void loadRepairs(Set<String> cars){
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
@@ -144,6 +186,7 @@ public class ClientMainPage extends AppCompatActivity {
                     Iterator<String> i = cars.iterator();
                     RepairJob temp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
 
+                    //Si las matriculas coinciden con las matriculas asignadas en las reparaciones, la reparacion seleccionada se añadira a la lista a mpostrar
                     if(i.hasNext()){
                         i.forEachRemaining(s -> {
                             if(s.equals(temp.getCar())){

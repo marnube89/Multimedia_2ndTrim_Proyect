@@ -3,6 +3,8 @@ package com.example.gestiontaller.views.chief_mechanic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
+import com.example.gestiontaller.graphics.ExitDialog;
+import com.example.gestiontaller.views.administrative.AdministrativeMainPage;
 
 public class MechanicChiefMainPage extends AppCompatActivity {
     private User currentUser;
@@ -32,17 +36,21 @@ public class MechanicChiefMainPage extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
-        currentUser = (User) getIntent().getSerializableExtra("user");
-
-        AppCompatButton completeTasks, newTasks, checkRepairs, asignMechanicsToTask;
-        completeTasks = findViewById(R.id.completeTasks);
-        completeTasks.setOnClickListener(new View.OnClickListener() {
+        ImageButton exit = findViewById(R.id.exitBtn);
+        exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gotoCompleteTasks = new Intent(MechanicChiefMainPage.this, ChiefMechanic_CompleteTasks.class);
-                startActivity(gotoCompleteTasks);
+                ExitDialog.exitDialog(currentUser, MechanicChiefMainPage.this);
             }
         });
+
+        TextView greeting = findViewById(R.id.greetings);
+        greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+
+        //Inicializacion y asignacion de funciones a los botones del menu
+        AppCompatButton newTasks, checkRepairs, asignMechanicsToTask;
 
         newTasks = findViewById(R.id.newTasks);
         newTasks.setOnClickListener(new View.OnClickListener() {

@@ -15,6 +15,8 @@ public class RepairJob implements Serializable {
     private ArrayList<String> mechanics;
     private ArrayList<String> repairTasks;
 
+    private Boolean isFinished;
+
     public RepairJob() {
     }
 
@@ -51,6 +53,19 @@ public class RepairJob implements Serializable {
 
         this.mechanics = new ArrayList<>();
         this.repairTasks = new ArrayList<>();
+        if(map.get("isFinished")!=null){
+            this.isFinished = (Boolean) map.get("isFinished");
+        }else{
+            this.isFinished = false;
+        }
+    }
+
+    public Boolean getFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(Boolean finished) {
+        isFinished = finished;
     }
 
     public String getDiagnostic() {

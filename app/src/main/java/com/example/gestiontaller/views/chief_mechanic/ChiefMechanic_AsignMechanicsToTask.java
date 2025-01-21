@@ -52,20 +52,8 @@ public class ChiefMechanic_AsignMechanicsToTask extends AppCompatActivity {
         UsersAdapter adapter = new UsersAdapter(this, mechanics);
         mechanicsList.setAdapter(adapter);
 
-        database.child("users").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                    User temp = new User((HashMap<String, Object>) postSnapshot.getValue());
-                    if(temp.getJobRol()==4){
-                        mechanics.add(temp);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {            }
-        });
+        //Carga los mecanicos en el adapter
+        loadMechanics(adapter);
 
 
         //Task selector (Drop down menu) item adapter
@@ -73,23 +61,12 @@ public class ChiefMechanic_AsignMechanicsToTask extends AppCompatActivity {
         ArrayAdapter<String> taskAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, tasksID);
         AutoCompleteTextView tasks = findViewById(R.id.taskNumber);
         tasks.setAdapter(taskAdapter);
-        database.child("tasks").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot postSnapshot : snapshot.getChildren()){
-                    RepairTask temp = new RepairTask((HashMap<String, Object>) postSnapshot.getValue());
-                    tasksID.add(temp.getTaskNumber());
-                }
-                taskAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        //Carga las tareas en el spinner
+        loadTasks(taskAdapter, tasksID);
 
         AppCompatButton confirm = findViewById(R.id.confirm);
+        //Guarda los cambios realizados
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,6 +87,57 @@ public class ChiefMechanic_AsignMechanicsToTask extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Carga los numeros de las tareas disponibles
+     * @param taskAdapter adaptador a actualizar
+     * @param tasksID lista de ID
+     */
+    private void loadTasks(ArrayAdapter<String> taskAdapter, ArrayList<String> tasksID) {
+        database.child("tasks").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postSnapshot : snapshot.getChildren()){
+                    RepairTask temp = new RepairTask((HashMap<String, Object>) postSnapshot.getValue());
+                    tasksID.add(temp.getTaskNumber());
+                }
+                taskAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    /**
+     * Carga en el adaptador los mecanicos disponibles
+     * @param adapter adaptador a actualizar
+     */
+    private void loadMechanics(UsersAdapter adapter) {
+        database.child("users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postSnapshot : snapshot.getChildren()){
+                    User temp = new User((HashMap<String, Object>) postSnapshot.getValue());
+                    if(temp.getJobRol()==4){
+                        mechanics.add(temp);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {            }
+        });
+    }
+
+    /**
+     * Metodo que devuelve los usuarios seleccionados
+     * @param adapter adapter de usuarios
+     * @param m componente ListView
+     * @return usuarios selecionados
+     */
     public ArrayList<String> getSelectedUsers(UsersAdapter adapter, ListView m){
         ArrayList<String> temp = new ArrayList<String>();
         for (int i = 0; i < adapter.getCount(); i++) {

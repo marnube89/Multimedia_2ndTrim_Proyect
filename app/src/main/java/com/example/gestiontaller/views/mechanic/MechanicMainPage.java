@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,6 +20,8 @@ import com.example.gestiontaller.adapters.TasksAdapter;
 import com.example.gestiontaller.data_classes.RepairTask;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
+import com.example.gestiontaller.graphics.ExitDialog;
+import com.example.gestiontaller.views.administrative.AdministrativeMainPage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +54,17 @@ public class MechanicMainPage extends AppCompatActivity {
 
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
+
+        TextView greeting = findViewById(R.id.greetings);
+        greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
+
+        ImageButton exit = findViewById(R.id.exitBtn);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExitDialog.exitDialog(currentUser, MechanicMainPage.this);
+            }
+        });
 
         ListView tasks = findViewById(R.id.taskList);
         adapter = new TasksAdapter(this, taskList);

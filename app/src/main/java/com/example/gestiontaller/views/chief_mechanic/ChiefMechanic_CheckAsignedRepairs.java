@@ -49,15 +49,37 @@ public class ChiefMechanic_CheckAsignedRepairs extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        //Carga de lista de reparaciones
         ListView assignedRepairs = findViewById(R.id.assignedRepairs);
         ArrayList<RepairJob> repairs = new ArrayList<RepairJob>();
         RepairListAdapter adapter = new RepairListAdapter(ChiefMechanic_CheckAsignedRepairs.this, repairs);
         assignedRepairs.setAdapter(adapter);
 
+        loadRepairs(adapter, repairs);
+
+        //Goto a los detalles de la reparacion
+        assignedRepairs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                RepairJob repair = (RepairJob) adapterView.getItemAtPosition(i);
+                Intent gotoDiagnostic = new Intent(ChiefMechanic_CheckAsignedRepairs.this, ChiefMechanic_Add_Complete_Diagnostic.class);
+                gotoDiagnostic.putExtra("repair", repair);
+                startActivity(gotoDiagnostic);
+
+            }
+        });
+
+    }
+
+    /**
+     * Carga las reparaciones asignadas a este usuario y actualiza el adaptador
+     * @param adapter adaptador a actualizar
+     * @param repairs lista de reparaciones
+     */
+    public void loadRepairs(RepairListAdapter adapter, ArrayList<RepairJob> repairs){
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                repairs.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     RepairJob temp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
                     if (temp.getChiefMechanic().equals(currentUser.getFullName())) {
@@ -72,25 +94,6 @@ public class ChiefMechanic_CheckAsignedRepairs extends AppCompatActivity {
                 Log.e("FirebaseError", error.getMessage());
             }
         });
-
-        assignedRepairs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                RepairJob repair = (RepairJob) adapterView.getItemAtPosition(i);
-                Intent gotoDiagnostic = new Intent(ChiefMechanic_CheckAsignedRepairs.this, ChiefMechanic_Add_Complete_Diagnostic.class);
-                gotoDiagnostic.putExtra("repair", repair);
-                startActivity(gotoDiagnostic);
-
-            }
-        });
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("Info", "pausado");
-        finish();
     }
 
 }

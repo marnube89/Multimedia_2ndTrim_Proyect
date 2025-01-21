@@ -49,6 +49,11 @@ public class RepairListAdapter extends ArrayAdapter<RepairJob> {
         partUds.setText("Mecanico Jefe a cargo: "+data.get(position).getChiefMechanic());
         TextView partPrice = elemento.findViewById(R.id.partPrice);
         partPrice.setText("Matricula: "+data.get(position).getCar());
+
+        if(data.get(position).getFinished()){
+            elemento.setBackgroundColor(getContext().getResources().getColor(R.color.softGreen));
+        }
+
         return elemento;
     }
 }

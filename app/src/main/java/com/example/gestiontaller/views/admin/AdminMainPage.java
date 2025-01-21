@@ -21,6 +21,8 @@ import com.example.gestiontaller.adapters.UsersAdapter;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
+import com.example.gestiontaller.graphics.ExitDialog;
+import com.example.gestiontaller.views.administrative.AdministrativeMainPage;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +40,7 @@ public class AdminMainPage extends AppCompatActivity {
     private ArrayList<User> users = new ArrayList<User>();
     private ListView employees;
     private UsersAdapter adapter;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,18 @@ public class AdminMainPage extends AppCompatActivity {
 
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
+        currentUser = (User) getIntent().getSerializableExtra("user");
+
+        TextView greeting = findViewById(R.id.greetings);
+        greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
+
+        ImageButton exit = findViewById(R.id.exitBtn);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExitDialog.exitDialog(currentUser, AdminMainPage.this);
+            }
+        });
 
         employees = findViewById(R.id.employeeList);
         adapter = new UsersAdapter(AdminMainPage.this, users);

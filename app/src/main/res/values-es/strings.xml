@@ -64,4 +64,5 @@
     <string name="editDesc">Editar desc</string>
     <string name="task_comnt">Comentarios de la tarea</string>
     <string name="repair_diagnostic">Diagnostico de reparacion</string>
+    <string name="respond_diagnostic">Responder propuesta</string>
 </resources>

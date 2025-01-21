@@ -53,6 +53,7 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             diagnostic.setText(data.getDiagnostic());
         }
 
+        //Añade/actualiza un diagnostico a la reparacion
         AppCompatButton addDiagnostic = findViewById(R.id.confirm);
         View view = findViewById(R.id.main);
         addDiagnostic.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +61,7 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             public void onClick(View view) {
                 if(!(diagnostic.getText().toString().isEmpty())){
                     data.setDiagnostic(diagnostic.getText().toString());
+                    //Actualiza los datos
                     database.child("repairJobs").child(data.getRepairNumber()).setValue(data);
                     finish();
                 }else{
@@ -68,12 +70,15 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             }
         });
 
+        //Finaliza la reparacion seleccionada
         AppCompatButton finishRepair = findViewById(R.id.complete);
         finishRepair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!(diagnostic.getText().toString().isEmpty())){
-                    database.child("repairJobs").child(data.getRepairNumber()).removeValue();
+                    data.setFinished(true);
+                    //En vez de borrar los datos, los actualiza
+                    database.child("repairJobs").child(data.getRepairNumber()).setValue(data);
                     finish();
                 }else{
                     Snackbar.make(view, "No se puede completar una reparacion sin diagnostico", Snackbar.LENGTH_SHORT).show();
@@ -81,6 +86,7 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             }
         });
 
+        //Cancela operacion
         AppCompatButton cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

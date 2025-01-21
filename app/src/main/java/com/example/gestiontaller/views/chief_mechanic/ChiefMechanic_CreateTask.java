@@ -52,6 +52,52 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        generateTaskNumber();
+
+        //Carga de reparaciones
+        AutoCompleteTextView repair = findViewById(R.id.repairTextField);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, repairNumbers);
+        repair.setAdapter(adapter);
+
+        loadRepairs(adapter);
+
+        //Campos a reyenar
+        TextInputEditText date = findViewById(R.id.dateTextField);
+        TextInputEditText desc = findViewById(R.id.description);
+
+        AppCompatButton confirm = findViewById(R.id.confirmBtt);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!date.getText().toString().isEmpty() && !desc.getText().toString().isEmpty() && !repair.getText().toString().isEmpty()){
+                    database.child("repairJobs").child(repair.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            repairData[0] = new RepairJob((HashMap<String, Object>) task.getResult().getValue());
+                        }
+                    });
+                    RepairTask newTask = new RepairTask(Integer.toString(taskNumber), repairData[0].getChiefMechanic(), date.getText().toString(), desc.getText().toString(), repairData[0].getRepairNumber());
+                    database.child("tasks").child(Integer.toString(taskNumber)).setValue(newTask);
+                    finish();
+                }else{
+                    //validacion de campos vacios
+                }
+            }
+        });
+
+        AppCompatButton cancel = findViewById(R.id.cancelBtt);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    /**
+     * Genera un nuevo id para la tarea a crear
+     */
+    public void generateTaskNumber(){
         database.child("tasks").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,10 +116,13 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
 
             }
         });
+    }
 
-        AutoCompleteTextView repair = findViewById(R.id.repairTextField);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, repairNumbers);
-        repair.setAdapter(adapter);
+    /**
+     * Carga los datos del selector de reparacioens
+     * @param adapter adaptador a actualizar
+     */
+    public void loadRepairs(ArrayAdapter<String> adapter){
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,37 +136,6 @@ public class ChiefMechanic_CreateTask extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-
-        TextInputEditText date = findViewById(R.id.dateTextField);
-        TextInputEditText desc = findViewById(R.id.description);
-
-        AppCompatButton confirm = findViewById(R.id.confirmBtt);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!date.getText().toString().isEmpty() && !desc.getText().toString().isEmpty() && !repair.getText().toString().isEmpty()){
-                    database.child("repairJobs").child(repair.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            repairData[0] = new RepairJob((HashMap<String, Object>) task.getResult().getValue());
-
-                        }
-                    });
-                    RepairTask newTask = new RepairTask(Integer.toString(taskNumber), repairData[0].getChiefMechanic(), date.getText().toString(), desc.getText().toString(), repairData[0].getRepairNumber());
-                    database.child("tasks").child(Integer.toString(taskNumber)).setValue(newTask);
-                    finish();
-                }
-            }
-        });
-
-        AppCompatButton cancel = findViewById(R.id.cancelBtt);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
             }
         });
     }
