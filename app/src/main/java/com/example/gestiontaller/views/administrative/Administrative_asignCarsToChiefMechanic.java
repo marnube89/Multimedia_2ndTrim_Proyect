@@ -18,6 +18,9 @@ import com.example.gestiontaller.data_classes.CarInShop;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,25 +69,19 @@ public class Administrative_asignCarsToChiefMechanic extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database.child("carInShop").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                            CarInShop userTemp = new CarInShop((HashMap<String, Object>) postSnapshot.getValue());
-                            if(userTemp.getLicensePlate().equals(car.getText().toString())){
-                                userTemp.setChiefMechanic(chiefMechanic.getText().toString());
-                                database.child("carInShop").child(car.getText().toString()).setValue(userTemp);
-                                finish();
-                                break;
-                            }
+                if(!car.getText().toString().isEmpty() && !chiefMechanic.getText().toString().isEmpty()){
+                    database.child("carInShop").child(car.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            CarInShop userTemp = new CarInShop((HashMap<String, Object>) task.getResult().getValue());
+                            userTemp.setChiefMechanic(chiefMechanic.getText().toString());
+                            database.child("carInShop").child(car.getText().toString()).setValue(userTemp);
+                            finish();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    });
+                }else{
+                    Snackbar.make(findViewById(R.id.main), "No se pueden dejar campos vacios", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -18,6 +18,9 @@ import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
 import com.example.gestiontaller.data_classes.RepairJob;
 import com.example.gestiontaller.data_classes.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,25 +69,23 @@ public class Administrative_AsignMechanicsToRepairJob extends AppCompatActivity 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database.child("repairJobs").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.i("Mecanico", mechanic.getText().toString());
-                        for(DataSnapshot postSnapshot: snapshot.getChildren()){
-                            RepairJob repairTemp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
+                if(!repair.getText().toString().isEmpty() && !mechanic.getText().toString().isEmpty()){
+                    database.child("repairJobs").child(repair.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            Log.i("Mecanico", mechanic.getText().toString());
+                            RepairJob repairTemp = new RepairJob((HashMap<String, Object>) task.getResult().getValue());
                             if(repairTemp.getRepairNumber().equals(repair.getText().toString())){
                                 ArrayList<String> mechanics = repairTemp.getMechanics();
                                 mechanics.add(mechanic.getText().toString());
                                 database.child("repairJobs").child(repair.getText().toString()).setValue(repairTemp);
                                 finish();
-                                break;
                             }
                         }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+                    });
+                }else{
+                    Snackbar.make(findViewById(R.id.main), "No se pueden dejar campos vacios", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -154,5 +155,11 @@ public class Administrative_AsignMechanicsToRepairJob extends AppCompatActivity 
                 Log.i("Info", "Fin de lectura");
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

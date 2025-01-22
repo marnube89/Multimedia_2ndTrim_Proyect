@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.gestiontaller.data_classes.CarPart;
 import com.example.gestiontaller.R;
 import com.example.gestiontaller.graphics.CustomGraphics;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -159,9 +160,13 @@ public class Administrative_OrderParts extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                partSelected[0].setUnitsAvailable(((long) uds)+ partSelected[0].getUnitsAvailable());
-                database.child("carParts").child(partId[0]).setValue(partSelected[0]);
-                finish();
+                if(!supplier.getText().toString().isEmpty() && !units.getText().toString().isEmpty() && !piece.getText().toString().isEmpty()){
+                    partSelected[0].setUnitsAvailable(((long) uds)+ partSelected[0].getUnitsAvailable());
+                    database.child("carParts").child(partId[0]).setValue(partSelected[0]);
+                    finish();
+                }else{
+                    Snackbar.make(findViewById(R.id.main), "No se pueden dejar campos vacios", Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 

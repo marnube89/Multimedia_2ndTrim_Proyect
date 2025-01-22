@@ -2,6 +2,7 @@ package com.example.gestiontaller.data_classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class RepairJob implements Serializable {
@@ -52,7 +53,13 @@ public class RepairJob implements Serializable {
         }
 
         this.mechanics = new ArrayList<>();
+        if(map.get("mechanics")!=null){
+            this.mechanics.addAll((ArrayList<String>) map.get("mechanics"));
+        }
         this.repairTasks = new ArrayList<>();
+        if(map.get("repairTasks")!=null){
+            this.repairTasks.addAll((ArrayList<String>) map.get("repairTasks"));
+        }
         if(map.get("finished")!=null){
             this.isFinished = (Boolean) map.get("finished");
         }else{
