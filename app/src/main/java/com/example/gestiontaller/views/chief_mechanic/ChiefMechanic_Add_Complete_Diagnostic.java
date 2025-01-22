@@ -53,6 +53,7 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
             diagnostic.setText(data.getDiagnostic());
         }
 
+
         //Añade/actualiza un diagnostico a la reparacion
         AppCompatButton addDiagnostic = findViewById(R.id.confirm);
         View view = findViewById(R.id.main);
@@ -94,5 +95,11 @@ public class ChiefMechanic_Add_Complete_Diagnostic extends AppCompatActivity {
                 finish();
             }
         });
+
+        if(data.getFinished()){
+            cancel.setVisibility(View.GONE);
+            finishRepair.setVisibility(View.GONE);
+            addDiagnostic.setVisibility(View.GONE);
+        }
     }
 }

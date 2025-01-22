@@ -99,6 +99,7 @@ public class MechanicMainPage extends AppCompatActivity {
         database.child("tasks").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                taskList.removeAll(taskList);
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     RepairTask temp = new RepairTask((HashMap<String, Object>) postSnapshot.getValue());
                     for (int i = 0; i < temp.getMechanics().size(); i++) {

@@ -2,6 +2,7 @@ package com.example.gestiontaller.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,7 @@ public class RepairListAdapter extends ArrayAdapter<RepairJob> {
         partPrice.setText("Matricula: "+data.get(position).getCar());
 
         if(data.get(position).getFinished()){
-            elemento.setBackgroundColor(getContext().getResources().getColor(R.color.softGreen));
+            elemento.setBackgroundTintList(ColorStateList.valueOf(getContext().getResources().getColor(R.color.softGreen)));
         }
 
         return elemento;

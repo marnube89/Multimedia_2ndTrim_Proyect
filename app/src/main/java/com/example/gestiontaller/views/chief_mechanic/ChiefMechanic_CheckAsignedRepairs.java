@@ -80,6 +80,7 @@ public class ChiefMechanic_CheckAsignedRepairs extends AppCompatActivity {
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                repairs.removeAll(repairs);
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     RepairJob temp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());
                     if (temp.getChiefMechanic().equals(currentUser.getFullName())) {
@@ -87,6 +88,7 @@ public class ChiefMechanic_CheckAsignedRepairs extends AppCompatActivity {
                     }
                 }
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override

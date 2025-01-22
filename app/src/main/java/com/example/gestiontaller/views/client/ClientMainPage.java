@@ -182,6 +182,7 @@ public class ClientMainPage extends AppCompatActivity {
         database.child("repairJobs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                repairs.removeAll(repairs);
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Iterator<String> i = cars.iterator();
                     RepairJob temp = new RepairJob((HashMap<String, Object>) postSnapshot.getValue());

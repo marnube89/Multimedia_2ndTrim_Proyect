@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.gestiontaller.data_classes.User;
 
@@ -79,7 +80,8 @@ public class UserDbHelper extends SQLiteOpenHelper {
         String where = UserContract.UserEntry._USER_UID + " = ?";
         String[] args = {user.getUid()};
 
-        db.delete(UserContract.UserEntry.TABLE_NAME, where, args);
+        int rows = db.delete(UserContract.UserEntry.TABLE_NAME, where, args);
+        Log.i("Rows" , Integer.toString(rows));
     }
 
     @Override

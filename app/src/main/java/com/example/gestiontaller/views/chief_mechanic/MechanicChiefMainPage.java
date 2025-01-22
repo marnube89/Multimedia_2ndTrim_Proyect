@@ -36,6 +36,8 @@ public class MechanicChiefMainPage extends AppCompatActivity {
         CustomGraphics.setBackgroundAnim(findViewById(R.id.main));
         CustomGraphics.hideUserControls(this);
 
+        currentUser = (User) getIntent().getSerializableExtra("user");
+
         ImageButton exit = findViewById(R.id.exitBtn);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +49,6 @@ public class MechanicChiefMainPage extends AppCompatActivity {
         TextView greeting = findViewById(R.id.greetings);
         greeting.setText(getResources().getString(R.string.greetings) + " " + currentUser.getFullName());
 
-        currentUser = (User) getIntent().getSerializableExtra("user");
 
         //Inicializacion y asignacion de funciones a los botones del menu
         AppCompatButton newTasks, checkRepairs, asignMechanicsToTask;
