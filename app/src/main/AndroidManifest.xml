@@ -25,9 +25,6 @@
             android:name=".views.mechanic.Mechanic_SelectedTask"
             android:exported="false" />
         <activity
-            android:name=".views.mechanic.Mechanic_ModifyTask"
-            android:exported="false" />
-        <activity
             android:name=".views.chief_mechanic.ChiefMechanic_AsignMechanicsToTask"
             android:exported="false" />
         <activity
@@ -35,9 +32,6 @@
             android:exported="false" />
         <activity
             android:name=".views.chief_mechanic.ChiefMechanic_CreateTask"
-            android:exported="false" />
-        <activity
-            android:name=".views.chief_mechanic.ChiefMechanic_CompleteTasks"
             android:exported="false" />
         <activity
             android:name=".views.administrative.Administrative_AsignMechanicsToRepairJob"
