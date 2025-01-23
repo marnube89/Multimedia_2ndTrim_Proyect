@@ -32,7 +32,7 @@ public class ExitDialog {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(user!=null){
                             dbHelper = new UserDbHelper(context);
-                            dbHelper.deleteUser(user);
+                            dbHelper.deleteUser();
                         }
                         ((Activity) context).finish();
                     }

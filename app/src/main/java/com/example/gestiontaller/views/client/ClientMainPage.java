@@ -131,7 +131,7 @@ public class ClientMainPage extends AppCompatActivity {
                 if(item.getItemId() == R.id.signOut){
 
                     //Cierre de sesion
-                    dbHelper.deleteUser(currentUser);
+                    dbHelper.deleteUser();
                     finish();
                 }
                 return true;

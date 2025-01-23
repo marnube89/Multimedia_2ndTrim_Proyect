@@ -73,15 +73,12 @@ public class UserDbHelper extends SQLiteOpenHelper {
 
     /**
      * Borrara al usuario que le pasemos de la base de datos local
-     * @param user usuario a borrar
      */
-    public void deleteUser(User user){
+    public void deleteUser(){
         SQLiteDatabase db = getReadableDatabase();
-        String where = UserContract.UserEntry._USER_UID + " = ?";
-        String[] args = {user.getUid()};
 
-        int rows = db.delete(UserContract.UserEntry.TABLE_NAME, where, args);
-        Log.i("Rows" , Integer.toString(rows));
+        db.execSQL("DELETE FROM " + UserContract.UserEntry.TABLE_NAME);
+
     }
 
     @Override
